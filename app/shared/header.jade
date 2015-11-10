@@ -1,0 +1,25 @@
+.header
+  body
+    nav.navbar-fixed.navigation.teal.darken-4
+      .nav-wrapper
+        a.brand-logo(href='#!') Maktaba
+        a.button-collapse(href='#', data-activates='mobile-demo')
+          i.material-icons menu
+        ul.right.hide-on-med-and-down
+          li(ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}")
+            a {{menuItem.name}}
+          li(ui-sref="login")
+            a.span.i.fa.fa-sign-out.fa-1x
+        ul#mobile-demo.side-nav
+          li
+            a(href='sass.html') Sass
+          li
+            a(href='badges.html') Components
+          li
+            a(href='collapsible.html') Javascript
+          li
+            a(href='mobile.html') Mobile
+
+
+
+

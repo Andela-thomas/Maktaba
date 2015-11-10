@@ -1,0 +1,82 @@
+
+.login
+  .container
+    ul.collapsible.popout(data-collapsible='accordion')
+      li
+        .collapsible-header.active
+          i.material-icons vpn_key
+          | Login
+        .collapsible-body
+          .container
+            .row
+            .col.s12.m5
+              .card-panel
+                .row
+                  form.col.s12
+                    .row
+                      .input-field.col.s12
+                        i.material-icons.prefix email
+                        input#email.validate(type='email')
+                        label(for='email', data-error='Please enter a valid email', data-success='valid Email') Email
+                      .input-field.col.s12
+                        i.material-icons.prefix vpn_key
+                        input#email.validate(type='password')
+                        label(for='password', data-error='Please enter a password', data-success='Valid password') Password
+                      br
+                      br
+                      button.btn.waves-effect.waves-light.teal.darken-1(type='submit', name='action')
+                        | Submit
+                        i.material-icons.right send
+
+      li
+        .collapsible-header
+          i.material-icons perm_identity
+          | Sign Up
+        .collapsible-body
+          .container
+            .row
+            .col.s12.m5
+              .card-panel
+                .row
+                  form.col.s12
+                    .row
+                      //fist name
+                      .input-field.col.s12
+                        i.material-icons.prefix account_circle
+                        input.validate(type='text' ng-model="user.firtname")
+                        label(for='email', data-error='Please enter a valid Name', data-success='valid Name') First Name
+                        //last name
+                      .input-field.col.s12
+                        i.material-icons.prefix account_circle
+                        input.validate(type='email' ng-model="user.lastname")
+                        label(for='email', data-error='Please enter a valid Name', data-success='valid Name') Last Name
+                        //username
+                      .input-field.col.s12
+                        i.material-icons.prefix perm_identity
+                        input.validate(type='text' ng-model="user.username")
+                        label(for='password', data-error='Please enter a password', data-success='Valid password') Username
+                        // roles
+                      .input-field.col.s12
+                        select.browser-default
+                          option(value='', disabled='', selected='') Choose your option
+                          option(value='1') Option 1
+                          option(value='2') Option 2
+                          option(value='3') Option 3
+
+                        br
+                        // Email
+                      .input-field.col.s12
+                        i.material-icons.prefix email
+                        input.validate(type='email')
+                        label(for='email', data-error='Please enter a valid email', data-success='valid Email') Email
+                      .input-field.col.s12
+                        i.material-icons.prefix vpn_key
+                        input.validate(type='password')
+                        label(for='Password', data-error='Please enter a valid password', data-success='valid password') Password
+                      button.btn.waves-effect.waves-light.teal.darken-1(type='submit', name='action')
+                        | Submit
+                        i.material-icons.right send
+
+
+
+

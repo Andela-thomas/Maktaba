@@ -1,0 +1,35 @@
+{
+  "name": "manager",
+  "version": "0.0.0",
+  "authors": [
+    "andela-thomas <thomas.nyambati@andela.com>"
+  ],
+  "description": "maktaba",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#~0.97.1",
+    "angular": "~1.4.3",
+    "angular-mocks": "~1.4.7",
+    "angular-resource": "~1.4.7",
+    "angular-ui-router": "~0.2.15",
+    "font-awesome": "fontawesome#~4.4.0",
+    "lodash": "latest",
+    "moment": "latest",
+    "angular-route": "~1.4.7",
+    "angular-aria": "~1.4.7",
+    "angular-animate": "~1.4.7"
+  }
+}
