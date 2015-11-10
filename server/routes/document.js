@@ -1,7 +1,6 @@
 // require the document hndler
 
-var docHandler = require('../handlers/document');
-
+var docHandler = require('../controllers/document');
 module.exports = function(app, express) {
   var router = express.Router();
   router.route('/documents')

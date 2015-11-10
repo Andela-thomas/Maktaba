@@ -4,4 +4,8 @@ var envVars = {
   db: process.env.DATABASE_URL
 };
 
-module.exports = envVars;
+module.exports = {
+  development: envVars,
+  staging: envVars,
+  production: envVars,
+};

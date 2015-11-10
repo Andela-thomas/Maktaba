@@ -3,6 +3,7 @@ angular.module('maktaba.controllers')
     function($rootScope, $scope, $state, Users) {
       // initilaize the accordion
       $('.collapsible').collapsible();
+      $('select').material_select();
 
       $scope.logout = function() {
         Users.logout($scope.user, function(err, res) {

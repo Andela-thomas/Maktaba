@@ -1,5 +1,5 @@
-module.exports = function(app, express, config) {
-  require('./users')(app, express, config);
+module.exports = function(app, express) {
+  require('./users')(app, express);
   require('./document')(app, express);
 
   // home route

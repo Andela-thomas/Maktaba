@@ -1,32 +1,30 @@
 // Require the user handler
 // We will use the handler to process data passed into our routers
-
+var User = require('../controllers/user');
 
 module.exports = function(app, express) {
-  var router = express.Router(),
-    userHandler = require('../handlers/user');
+  var router = express.Router();
+
   router.route('/users/login')
-    .post(userHandler.loginUser);
+    .post(User.loginUser);
 
-  // logout middleware
   router.route('/users/logout')
-    .post(userHandler.logoutUser);
+    .post(User.logoutUser);
 
-  //User routes
   router.route('/users')
-    .post(userHandler.createUser)
-    .get(userHandler.getAllUsers);
+    .post(User.createUser)
+    .get(User.getAllUsers);
 
   // verify user middleware
-  router.use(userHandler.verifyUser);
+  router.use(User.verifyUser);
 
   router.route('/users/:id')
-    .get(userHandler.getUser)
-    .put(userHandler.updateUser)
-    .delete(userHandler.deleteUser);
+    .get(User.getUser)
+    .put(User.updateUser)
+    .delete(User.deleteUser);
 
   router.route('/users/:id/documents')
-    .get(userHandler.getDocumentByUserId);
+    .get(User.getDocumentByUserId);
 
   // All the api should start with prefix api
   app.use('/api', router);
