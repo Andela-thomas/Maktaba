@@ -6,17 +6,17 @@ module.exports = function(app, express) {
   var router = express.Router();
 
   router.route('/users/login')
-    .post(User.loginUser);
+    .post(User.login);
 
   router.route('/users/logout')
-    .post(User.logoutUser);
-
+    .post(User.logout);
   router.route('/users')
-    .post(User.createUser)
-    .get(User.getAllUsers);
-
+    .post(User.signup);
   // verify user middleware
   router.use(User.verifyUser);
+
+  router.route('/users')
+    .get(User.getAllUsers);
 
   router.route('/users/:id')
     .get(User.getUser)
@@ -25,6 +25,10 @@ module.exports = function(app, express) {
 
   router.route('/users/:id/documents')
     .get(User.getDocumentByUserId);
+  router.route('/me')
+    .get(function(req, res) {
+      res.send(req.decoded);
+    });
 
   // All the api should start with prefix api
   app.use('/api', router);

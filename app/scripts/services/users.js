@@ -19,8 +19,8 @@ angular.module('maktaba.services')
       });
     };
 
-    obj.session = function(cb) {
-      $http.get('/api/users/session').success(function(res) {
+    obj.user = function(cb) {
+      $http.get('/api/me').success(function(res) {
         cb(null, res);
       }).error(function(err) {
         cb(err);

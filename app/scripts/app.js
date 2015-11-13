@@ -6,6 +6,7 @@
   angular.module('maktaba.directives', []);
 
   //Require Services
+  require('./services/auth');
   require('./services/users');
 
   // Require Controllers
@@ -25,9 +26,25 @@
     'ngResource',
   ]);
 
-  window.app.run(['$rootScope', '$location', 'Users',
-    function($rootScope, $location, Users) {
-      $(".button-collapse").sideNav();
+  window.app.run(['$rootScope', '$location', 'Users', 'Auth',
+    function($rootScope, $location, Users, Auth) {
+      $(function() {
+        $(".button-collapse").sideNav({
+          closeOnClick: true
+        });
+      });
+      // Get token
+      if (Auth.isLoggedIn()) {
+        // Get the current logged in user
+        Users.user(function(err, res) {
+          if (res) {
+            $rootScope.isLoggedIn = Auth.isLoggedIn();
+            console.log($rootScope.isLoggedIn);
+          } else {
+            console.log('Error', err);
+          }
+        });
+      }
 
       $rootScope.menu = [{
         name: 'Home',
@@ -39,7 +56,20 @@
     }
   ]);
 
-  window.app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+  window.app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+
+    // pass the token to the headers
+    $httpProvider.interceptors.push(function($q, Auth) {
+      var token = Auth.getToken();
+      return {
+        'request': function(config) {
+          if (token) {
+            config.headers['x-access-token'] = token;
+          }
+          return config;
+        }
+      };
+    });
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise('/404');
 
