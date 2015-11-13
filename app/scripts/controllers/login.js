@@ -1,6 +1,6 @@
 angular.module('maktaba.controllers')
-  .controller('LoginCtrl', ['$rootScope', '$scope', '$state', '$window', 'Users', 'Auth',
-    function($rootScope, $scope, $state, $window, Users, Auth) {
+  .controller('LoginCtrl', ['$rootScope', '$scope', '$window', 'Users', 'Auth',
+    function($rootScope, $scope, $window, Users, Auth) {
       // initilaize the accordion
       $('.collapsible').collapsible();
       $('select').material_select();
@@ -8,12 +8,12 @@ angular.module('maktaba.controllers')
       $scope.login = function() {
         Users.login($scope.user, function(err, res) {
           if (res.token) {
-            $rootScope.currentUser = res;
+            $rootScope.isLoggedIn = Auth.isLoggedIn();
             // add user token to the local storage
             Auth.setToken(res.token);
             // toast message
             Materialize.toast(res.message, 5000);
-            $state.go('home');
+            $window.location = '/';
           } else {
             Materialize.toast(res.message, 5000);
           }

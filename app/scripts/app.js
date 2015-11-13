@@ -34,13 +34,12 @@
         });
       });
       // Get token
-
       if (Auth.isLoggedIn()) {
         // Get the current logged in user
         Users.user(function(err, res) {
           if (res) {
-            $rootScope.currentUser = res;
             $rootScope.isLoggedIn = Auth.isLoggedIn();
+            console.log($rootScope.isLoggedIn);
           } else {
             console.log('Error', err);
           }
