@@ -8,6 +8,9 @@ var gulp = require('gulp'),
   source = require('vinyl-source-stream'),
   imagemin = require('gulp-imagemin'),
   nodemon = require('gulp-nodemon'),
+  karma = require('gulp-karma'),
+  protractor = require('gulp-protractor').protractor,
+  mocha = require('gulp-mocha'),
   paths = {
     public: 'public/**',
     jade: ['!app/shared/**', 'app/**/*.jade'],
@@ -18,8 +21,44 @@ var gulp = require('gulp'),
       '!app/images/**/*',
       'app/**/*.*'
     ],
+    unitTests: [
+      'public/lib/angular/angular.min.js',
+      'public/lib/angular-ui-router/release/angular-ui-router.min.js',
+      'public/js/app.js',
+      'tests/unit/**/*.spec.js'
+    ],
+    serverTests: ['./tests/server/**/*.spec.js'],
+    libTests: ['lib/tests/**/*.js'],
     styles: 'app/styles/*.+(less|css)'
   };
+
+gulp.task('test:fend', function() {
+  // Be sure to return the stream
+  return gulp.src(paths.unitTests)
+    .pipe(karma({
+      configFile: __dirname + '/karma.conf.js',
+      // autoWatch: false,
+      // singleRun: true
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
+});
+
+gulp.task('test:bend', function() {
+  return gulp.src(paths.serverTests)
+    .pipe(mocha({
+      reporter: 'spec'
+    }))
+    .once('error', function() {
+      process.exit(1);
+    })
+    .once('end', function() {
+      process.exit();
+    });
+});
 
 gulp.task('less', function() {
   gulp.src(paths.styles)
@@ -51,12 +90,12 @@ gulp.task('bower', function() {
 });
 
 gulp.task('browserify', function() {
-  return browserify('./app/scripts/application.js').bundle()
+  return browserify('./app/scripts/app.js').bundle()
     .on('success', gutil.log.bind(gutil, 'Browserify Rebundled'))
     .on('error', gutil.log.bind(gutil, 'Browserify ' +
       'Error: in browserify gulp task'))
     // vinyl-source-stream makes the bundle compatible with gulp
-    .pipe(source('application.js')) // Desired filename
+    .pipe(source('app.js')) // Desired filename
     // Output the file
     .pipe(gulp.dest('./public/js/'));
 });
@@ -77,6 +116,18 @@ gulp.task('nodemon', function() {
     });
 });
 
+gulp.task('test:e2e', function(cb) {
+  gulp.src(['./tests/e2e/*.js'])
+    .pipe(protractor({
+      configFile: './protractor.conf.js',
+      args: ['--baseUrl', 'http://127.0.0.1:8000']
+    }))
+    .on('error', function(e) {
+      console.log(e);
+    })
+    .on('end', cb);
+});
+
 gulp.task('watch', function() {
   // livereload.listen({ port: 35729 });
   gulp.watch(paths.jade, ['jade']);
@@ -92,4 +143,5 @@ gulp.task('heroku:production', ['build']);
 gulp.task('heroku:staging', ['build']);
 gulp.task('production', ['nodemon', 'build']);
 //gulp.task('test', ['test:fend', 'test:e2e']);
+
 gulp.task('default', ['nodemon', 'watch', 'build']);

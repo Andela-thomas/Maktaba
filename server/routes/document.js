@@ -1,8 +1,7 @@
 // require the document hndler
 
 var docHandler = require('../controllers/document');
-
-module.exports = function (app, express) {
+module.exports = function(app, express) {
   var router = express.Router();
   router.route('/documents')
     .post(docHandler.createDocument)

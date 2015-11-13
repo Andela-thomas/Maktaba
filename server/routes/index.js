@@ -1,4 +1,4 @@
-module.exports = function (app, express) {
+module.exports = function(app, express) {
   require('./users')(app, express);
   require('./document')(app, express);
 
