@@ -1,6 +1,6 @@
 angular.module('maktaba.controllers')
-  .controller('LoginCtrl', ['$rootScope', '$scope', '$window', 'Users', 'Auth',
-    function($rootScope, $scope, $window, Users, Auth) {
+  .controller('LoginCtrl', ['$rootScope', '$scope', '$state', 'Users', 'Auth',
+    function($rootScope, $scope, $state, Users, Auth) {
       // initilaize the accordion
       $('.collapsible').collapsible();
       $('select').material_select();
@@ -13,19 +13,13 @@ angular.module('maktaba.controllers')
             Auth.setToken(res.token);
             // toast message
             Materialize.toast(res.message, 5000);
-            $window.location = '/';
+            $state.go('dashboard', {id: res.user._id});
           } else {
             Materialize.toast(res.message, 5000);
           }
         });
       };
 
-      // sign up
-      $scope.roles = [
-        'user',
-        'admin',
-        'public'
-      ];
 
       // register user
       $scope.register = function() {

@@ -15,7 +15,7 @@
   require('./controllers/about');
   require('./controllers/header');
   require('./controllers/login');
-
+  require('./controllers/dashboard');
   window.app = angular.module('maktaba', [
     'maktaba.controllers',
     'maktaba.services',
@@ -79,6 +79,11 @@
         url: '/',
         controller: 'HomeCtrl',
         templateUrl: 'views/home.html'
+      })
+      .state('dashboard', {
+        url: '/dashboard/{id}',
+        controller: 'DashboardCtrl',
+        templateUrl: 'views/dashboard.html'
       })
       .state('about', {
         url: '/about',
