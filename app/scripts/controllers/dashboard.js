@@ -1,4 +1,27 @@
 angular.module('maktaba.controllers')
-  .controller('DashboardCtrl', ['$scope', function($scope) {
+  .controller('DashboardCtrl', ['$scope', '$state', '$stateParams', '$location', 'Users',
+    function($scope, $state, $stateParams, $location, Users) {
+      $(function() {
+        $('.tooltipped').tooltip({
+          delay: 50
+        });
+      });
 
-  }]);
+      var userId = $location.search().id,
+        documentId = $stateParams.id;
+
+      // load all the documents of a specified user
+      if (userId) {
+        Users.getDocument(userId, function(err, res) {
+          $scope.documents = res;
+        });
+      }
+
+      // Read more
+      $scope.readMore = function(id) {
+        $state.go('document', {
+          id: id
+        });
+      };
+    }
+  ]);

@@ -1,6 +1,6 @@
 angular.module('maktaba.controllers')
-  .controller('LoginCtrl', ['$rootScope', '$scope', '$state', 'Users', 'Auth',
-    function($rootScope, $scope, $state, Users, Auth) {
+  .controller('LoginCtrl', ['$rootScope', '$scope', '$location', 'Users', 'Auth',
+    function($rootScope, $scope, $location, Users, Auth) {
       // initilaize the accordion
       $('.collapsible').collapsible();
       $('select').material_select();
@@ -13,7 +13,9 @@ angular.module('maktaba.controllers')
             Auth.setToken(res.token);
             // toast message
             Materialize.toast(res.message, 5000);
-            $state.go('dashboard', {id: res.user._id});
+            $location.path('/dashboard').search({
+              id: res.user._id
+            });
           } else {
             Materialize.toast(res.message, 5000);
           }

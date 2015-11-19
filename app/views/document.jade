@@ -1,0 +1,19 @@
+.container.document
+  .row
+    .col.s12.m12
+      .card
+        .card-content
+          span.card-title
+            a(href="")
+              | {{document.title}}
+          p {{document.content}}
+        .card-action
+          p
+            a(href="")
+              | By: {{user.name.first + ' ' + user.name.last}}
+          a.btn-floating.btn-large.red(ng-click="delete()")
+            i.material-icons.left delete
+            | button
+          a.btn-floating.btn-large.red
+            i.material-icons.right edit
+            | button

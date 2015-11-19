@@ -111,6 +111,7 @@ gulp.task('nodemon', function() {
       ext: 'js',
       ignore: ['public/', 'node_modules/']
     })
+    .on('change', 'browserify')
     .on('restart', function() {
       console.log('>> node restart');
     });
