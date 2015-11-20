@@ -1,0 +1,26 @@
+.row.document
+  .col.s12.m4.l3.hide-on-small-only
+    ul.collection.with-header
+      li.collection-header.grey.lighten-3
+        h6 Available users
+      li.collection-item(ng-repeat="user in users")
+        | {{ user.name.first + ' ' + user.name.last}}
+
+  .col.s12.m8.l9
+    ul.collection.with-header
+      li.collection-header.grey.lighten-3
+        h6 Documents
+      li.collection-item.avatar(ng-repeat="document in documents")
+        i.material-icons.circle.green folder
+        span.title
+         a(href="" ng-click="readMore(document._id)")
+          | {{document.title}}
+        div
+          |  {{document.content | limitTo: 365}}
+          a(href="" ng-click="readMore(document._id)")
+            i.material-icons open_in_new
+
+
+
+
+

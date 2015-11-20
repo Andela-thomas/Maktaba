@@ -8,6 +8,7 @@
   //Require Services
   require('./services/auth');
   require('./services/users');
+  require('./services/document');
 
   // Require Controllers
   require('./controllers/footer');
@@ -15,7 +16,8 @@
   require('./controllers/about');
   require('./controllers/header');
   require('./controllers/login');
-
+  require('./controllers/dashboard');
+  require('./controllers/document');
   window.app = angular.module('maktaba', [
     'maktaba.controllers',
     'maktaba.services',
@@ -34,17 +36,21 @@
         });
       });
       // Get token
-      if (Auth.isLoggedIn()) {
-        // Get the current logged in user
-        Users.user(function(err, res) {
-          if (res) {
-            $rootScope.isLoggedIn = Auth.isLoggedIn();
-            console.log($rootScope.isLoggedIn);
-          } else {
-            console.log('Error', err);
-          }
-        });
-      }
+      $rootScope.$on("$locationChangeStart", function(event, next, current) {
+        //Do your things
+        if (Auth.isLoggedIn()) {
+          // Get the current logged in user
+          Users.user(function(err, res) {
+            if (res) {
+              $rootScope.isLoggedIn = Auth.isLoggedIn();
+              $rootScope.user = res;
+            } else {
+              console.log('Error', err);
+            }
+          });
+        }
+      });
+
 
       $rootScope.menu = [{
         name: 'Home',
@@ -59,17 +65,7 @@
   window.app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     // pass the token to the headers
-    $httpProvider.interceptors.push(function($q, Auth) {
-      var token = Auth.getToken();
-      return {
-        'request': function(config) {
-          if (token) {
-            config.headers['x-access-token'] = token;
-          }
-          return config;
-        }
-      };
-    });
+    $httpProvider.interceptors.push('Interceptor');
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise('/404');
 
@@ -79,6 +75,21 @@
         url: '/',
         controller: 'HomeCtrl',
         templateUrl: 'views/home.html'
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        controller: 'DashboardCtrl',
+        templateUrl: 'views/dashboard.html'
+      })
+      .state('document', {
+        url: '/user/{id}/document',
+        controller: 'DocumentCtrl',
+        templateUrl: 'views/document.html'
+      })
+      .state('addDocument', {
+        url: '/document/create',
+        controller: 'DocumentCtrl',
+        templateUrl: 'views/add-document.html'
       })
       .state('about', {
         url: '/about',
