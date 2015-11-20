@@ -25,7 +25,7 @@ var gulp = require('gulp'),
       'public/lib/angular/angular.min.js',
       'public/lib/angular-ui-router/release/angular-ui-router.min.js',
       'public/js/app.js',
-      'tests/unit/**/*.spec.js'
+      'tests/client/**/*.spec.js'
     ],
     serverTests: ['./tests/server/**/*.spec.js'],
     libTests: ['lib/tests/**/*.js'],
@@ -40,23 +40,12 @@ gulp.task('test:fend', function() {
       // autoWatch: false,
       // singleRun: true
       action: 'run'
+
     }))
     .on('error', function(err) {
       // Make sure failed tests cause gulp to exit non-zero
+      console.log('error', err);
       throw err;
-    });
-});
-
-gulp.task('test:bend', function() {
-  return gulp.src(paths.serverTests)
-    .pipe(mocha({
-      reporter: 'spec'
-    }))
-    .once('error', function() {
-      process.exit(1);
-    })
-    .once('end', function() {
-      process.exit();
     });
 });
 
@@ -111,6 +100,7 @@ gulp.task('nodemon', function() {
       ext: 'js',
       ignore: ['public/', 'node_modules/']
     })
+    .on('change', 'browserify')
     .on('restart', function() {
       console.log('>> node restart');
     });
@@ -142,6 +132,6 @@ gulp.task('build', ['jade', 'less', 'static-files',
 gulp.task('heroku:production', ['build']);
 gulp.task('heroku:staging', ['build']);
 gulp.task('production', ['nodemon', 'build']);
-//gulp.task('test', ['test:fend', 'test:e2e']);
+gulp.task('test', ['test:fend', 'test:e2e']);
 
 gulp.task('default', ['nodemon', 'watch', 'build']);
