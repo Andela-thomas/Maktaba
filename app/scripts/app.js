@@ -86,6 +86,11 @@
         controller: 'DocumentCtrl',
         templateUrl: 'views/document.html'
       })
+      .state('addDocument', {
+        url: '/document/create',
+        controller: 'DocumentCtrl',
+        templateUrl: 'views/add-document.html'
+      })
       .state('about', {
         url: '/about',
         controller: 'AboutCtrl',

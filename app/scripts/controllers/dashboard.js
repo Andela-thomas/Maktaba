@@ -10,6 +10,8 @@ angular.module('maktaba.controllers')
       var userId = $location.search().id,
         documentId = $stateParams.id;
 
+      //Get all users
+      $scope.users = Users.query();
       // load all the documents of a specified user
       if (userId) {
         Users.getDocument(userId, function(err, res) {

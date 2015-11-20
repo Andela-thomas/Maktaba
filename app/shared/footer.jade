@@ -1,4 +1,4 @@
-.fixed-action-btn(style='bottom: 45px; right: 24px;' ng-if="isLoggedIn")
+.fixed-action-btn.hide-on-med-and-up(style='bottom: 45px; right: 24px;' ng-if="isLoggedIn")
   a.btn-floating.btn-large.red
     i.large.material-icons mode_edit
   ul
@@ -16,7 +16,7 @@
         i.material-icons attach_file
 
 
-footer.page-footer.grey.darken-4(ng-controller="FooterCtrl")
+footer.page-footer.grey.darken-3(ng-controller="FooterCtrl")
   .container
     .row
       .col.l6.s12
