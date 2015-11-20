@@ -1,0 +1,35 @@
+.header(ng-controller="HeaderCtrl")
+  body
+    nav.navbar-fixed.navigation.teal.darken-4
+      .nav-wrapper
+        a.brand-logo(href='#!')
+          img.logo(src='images/logo.png' alt='Maktaba')
+        a.button-collapse(href='#', data-activates='mobile-demo')
+          i.material-icons menu
+        ul.right.menu.hide-on-med-and-down
+          li(ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" ng-if="!isLoggedIn")
+            a {{menuItem.name}}
+          li(ng-if="!isLoggedIn" ui-sref="login")
+            a.span.i.fa.fa-sign-in.fa-1x
+
+          li(ng-if='isLoggedIn')
+            a(href="" ng-click="goto()").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Add document")
+              i.material-icons.md-18 note_add
+
+          li(ng-if='isLoggedIn')
+            a(href="" ng-click="logout()").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Logout")
+              i.material-icons.md-18 lock_open
+        ul#mobile-demo.side-nav
+          li(ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}")
+            a {{menuItem.name}}
+          li(ui-sref="login" ng-if="!isLoggedIn")
+            a.span.i.fa.fa-sign-in.fa-2x  Login
+          li(ng-if='isLoggedIn' ng-click="logout()")
+            a.span.i.fa.fa-sign-out.fa-2x  Logout
+          li
+          br
+
+
+
+
+

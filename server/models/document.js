@@ -4,10 +4,17 @@ var mongoose = require('mongoose'),
     ownerId: String,
     title: {
       type: String,
-      unique: true
+      unique: true,
+      required: true
     },
-    content: String,
-    access:String,
+    content: {
+      type: String,
+      required: true
+    },
+    access: {
+      type: String,
+      required: true
+    },
     dateCreated: {
       type: Date,
       default: Date.now
