@@ -26,6 +26,8 @@ mongoose.connect(config.db, function(err, conn) {
   }
 });
 
+console.log(config);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
