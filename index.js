@@ -22,9 +22,10 @@ mongoose.connect(config.db, function(err, conn) {
     console.log('connection failed: ' + err);
     process.exit(1);
   } else {
-    console.log('connection established....');
+    console.log('connection established....' + conn);
   }
 });
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
@@ -88,7 +89,7 @@ app.use(function(err, req, res, next) {
   next();
 });
 
-var server = app.listen(process.env.PORT || 8080, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
   console.log('Express server listening on %d, in %s' +
     'mode', server.address().port, app.get('env'));
 });

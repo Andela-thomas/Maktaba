@@ -1,30 +1,25 @@
 var Doc = require('../models/document'),
   docHandler = {
-    createDocument: function(req, res) {
-      if (req.body === undefined) {
-        res.json({
-          message: 'Please provide document data'
-        });
-      } else {
-        Doc.create({
-          ownerId: req.body.userId,
-          title: req.body.title,
-          access: req.body.access,
-          content: req.body.content
-        }, function(err, doc) {
-          if (err)
-            res.send(err);
-          if (!doc)
-            res.status(400).send({
-              error: 'Document not created'
-            });
-          else
-            res.json(doc);
-        });
-      }
+    create: function(req, res) {
+      console.log(req.decoded);
+      Doc.create({
+        ownerId: req.decoded.id,
+        title: req.body.title,
+        access: req.body.access,
+        content: req.body.content
+      }, function(err, doc) {
+        if (err)
+          res.send(err);
+        if (!doc)
+          res.status(400).send({
+            error: 'Document not created'
+          });
+        else
+          res.json(doc);
+      });
     },
 
-    getAllDocuments: function(req, res) {
+    all: function(req, res) {
       Doc.find({}, function(err, docs) {
         if (err) {
           res.status(404).send({
@@ -35,7 +30,7 @@ var Doc = require('../models/document'),
       });
     },
 
-    getDocument: function(req, res) {
+    find: function(req, res) {
       Doc.findOne({
         _id: req.params.id
       }, function(err, docs) {
@@ -48,7 +43,8 @@ var Doc = require('../models/document'),
       });
     },
 
-    updateDocument: function(req, res) {
+    update: function(req, res) {
+      console.log(req.body);
       Doc.update({
         _id: req.params.id
       }, {
@@ -58,7 +54,7 @@ var Doc = require('../models/document'),
         }
       }, function(err) {
         if (err)
-          res.status(500).send({
+          res.send({
             error: 'Update failed'
           });
         else
@@ -68,7 +64,7 @@ var Doc = require('../models/document'),
       });
     },
 
-    deleteDocument: function(req, res) {
+    delete: function(req, res) {
       Doc.remove({
         _id: req.params.id
       }, function(err, ok) {

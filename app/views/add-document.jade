@@ -1,0 +1,36 @@
+.container.document
+  .card-panel
+    .row
+    .col.s12.m5
+      .row
+        form.col.s12(ng-submit="register()")
+          .row
+            //fist name
+            .input-field.col.s12
+              i.material-icons.prefix account_circle
+              input(type="text" ng-model="user.firstname" required)
+              label(for="email") First Name
+              //last name
+            .input-field.col.s12
+              i.material-icons.prefix account_circle
+              input.validate(type="text" ng-model="user.lastname" required)
+              label(for="email") Last Name
+              //username
+            .input-field.col.s12
+              i.material-icons.prefix perm_identity
+              input.validate(type="text" ng-model="user.username" required)
+              label(for="password") Username
+              br
+              // Email
+            .input-field.col.s12
+              i.material-icons.prefix email
+              input.validate(type="email"  ng-model="user.email" required)
+              label(for="email") Email
+            .input-field.col.s12
+              i.material-icons.prefix vpn_key
+              input.validate(type="password" ng-model="user.password" required)
+              label(for="Password") Password
+          div
+            button.btn.waves-effect.waves-light.teal.darken-1(type="submit", name="action")
+              | Submit
+              i.material-icons.right send
