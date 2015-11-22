@@ -1,8 +1,9 @@
 var Doc = require('../models/document'),
   docHandler = {
     create: function(req, res) {
+      console.log(req.decoded);
       Doc.create({
-        ownerId: req.body.userId,
+        ownerId: req.decoded.id,
         title: req.body.title,
         access: req.body.access,
         content: req.body.content

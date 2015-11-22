@@ -10,7 +10,8 @@
           li(ng-repeat="menuItem in menu" ui-sref="{{menuItem.state}}" ng-if="!isLoggedIn")
             a {{menuItem.name}}
           li(ng-if="!isLoggedIn" ui-sref="login")
-            a.span.i.fa.fa-sign-in.fa-1x
+            a(href="").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Login")
+              i.material-icons.md-18 lock_outline
 
           li(ng-if='isLoggedIn')
             a(href="" ng-click="goto()").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Add document")

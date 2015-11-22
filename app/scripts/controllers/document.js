@@ -2,20 +2,31 @@ angular.module('maktaba.controllers')
   .controller('DocumentCtrl', ['$scope', '$state', '$stateParams', '$location', 'Users', 'Documents',
     function($scope, $state, $stateParams, $location, Users, Documents) {
       var id = $stateParams.id;
-      // load the document
-      Documents.get({
-        id: id
-      }, function(data) {
-        $scope.document = data;
-        $('#content').val($scope.document.content);
-        $('#content').trigger('autoresize');
-        var id = data.ownerId;
-        Users.get({
-          id: id
-        }, function(user) {
-          $scope.user = user;
-        });
+      $(function() {
+        $('select').material_select();
       });
+
+      // add document
+      $scope.access = [
+        'Private',
+        'Public'
+      ];
+      // load the document
+      if (id) {
+        Documents.get({
+          id: id
+        }, function(data) {
+          $scope.document = data;
+          $('#content').val($scope.document.content);
+          $('#content').trigger('autoresize');
+          var id = data.ownerId;
+          Users.get({
+            id: id
+          }, function(user) {
+            $scope.user = user;
+          });
+        });
+      }
 
       //  Update document
       $scope.update = function() {
@@ -48,6 +59,10 @@ angular.module('maktaba.controllers')
             Materialize.toast('Delete failed', 5000);
           }
         });
+      };
+
+      $scope.addDocument = function() {
+        console.log($scope.document);
       };
 
 
