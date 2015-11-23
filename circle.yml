@@ -14,5 +14,5 @@ deployment:
   staging:
     branch: staging
     heroku:
-      appname: makatba-staging
+      appname: maktaba-staging
 
