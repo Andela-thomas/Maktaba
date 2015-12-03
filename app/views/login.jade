@@ -1,6 +1,6 @@
 
 .login
-  ul.collapsible.popout(data-collapsible="accordion")
+  ul.collapsible(data-collapsible="accordion")
     li
       .collapsible-header.active.white
         i.material-icons loyalty
@@ -9,7 +9,7 @@
         .container
           .row
           .col.s12.m5
-            .row
+            .card-panel
               form.col.s12(ng-submit="login()")
                 .row
                   .input-field.col.s12
@@ -22,7 +22,7 @@
                     input#email.validate(type="password" ng-model="user.password" required)
                     label(for="password") Password
                 div
-                  button.btn.waves-effect.waves-light.teal.darken-1(type="submit", name="action")
+                  button.btn.waves-effect.waves-light.purple.lighten-2(type="submit", name="action")
                     | Submit
                     i.material-icons.right send
 
@@ -34,7 +34,7 @@
           .container
             .row
             .col.s12.m5
-              .row
+              .card-panel
                 form.col.s12(ng-submit="register()")
                   .row
                     //fist name
@@ -63,7 +63,7 @@
                       input.validate(type="password" ng-model="user.password" required)
                       label(for="Password") Password
                   div
-                    button.btn.waves-effect.waves-light.teal.darken-1(type="submit", name="action")
+                    button.btn.waves-effect.waves-light.purple.lighten-1(type="submit", name="action")
                       | Submit
                       i.material-icons.right send
 
