@@ -1,5 +1,5 @@
 angular.module('maktaba.controllers')
-  .controller('HomeCtrl', ['$scope', function($scope) {
+  .controller('ProfileCtrl', ['$scope', function($scope) {
     $scope.header_image = 'images/me.gif';
     $('.parallax').parallax();
   }]);

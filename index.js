@@ -17,17 +17,14 @@ var config = require('./server/config')[env],
   session = require('express-session');
 
 //connect to mongodb
-mongoose.connect(config.db, function(err, conn) {
+mongoose.connect(config.db, function(err) {
   if (err) {
     console.log('connection failed: ' + err);
     process.exit(1);
   } else {
-    console.log('connection established....' + conn);
+    console.log('connection established....');
   }
 });
-
-console.log(config);
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));

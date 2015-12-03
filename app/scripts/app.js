@@ -18,6 +18,7 @@
   require('./controllers/login');
   require('./controllers/dashboard');
   require('./controllers/document');
+  require('./controllers/profile');
   window.app = angular.module('maktaba', [
     'maktaba.controllers',
     'maktaba.services',
@@ -30,13 +31,19 @@
 
   window.app.run(['$rootScope', '$location', 'Users', 'Auth',
     function($rootScope, $location, Users, Auth) {
-      $(function() {
+
+      /*Preloader*/
+      $(window).load(function() {
+        setTimeout(function() {
+          $('body').addClass('loaded');
+        }, 200);
         $(".button-collapse").sideNav({
           closeOnClick: true
         });
       });
+
       // Get token
-      $rootScope.$on("$locationChangeStart", function(event, next, current) {
+      $rootScope.$on("$locationChangeStart", function() {
         //Do your things
         if (Auth.isLoggedIn()) {
           // Get the current logged in user
@@ -44,21 +51,15 @@
             if (res) {
               $rootScope.isLoggedIn = Auth.isLoggedIn();
               $rootScope.user = res;
+              console.log($rootScope.user);
             } else {
               console.log('Error', err);
             }
           });
         }
+
+        console.log($rootScope.user);
       });
-
-
-      $rootScope.menu = [{
-        name: 'Home',
-        state: 'home'
-      }, {
-        name: 'About',
-        state: 'about'
-      }];
     }
   ]);
 
@@ -91,10 +92,10 @@
         controller: 'DocumentCtrl',
         templateUrl: 'views/add-document.html'
       })
-      .state('about', {
-        url: '/about',
-        controller: 'AboutCtrl',
-        templateUrl: 'views/about.html'
+      .state('profile', {
+        url: '/users/profile',
+        controller: 'ProfileCtrl',
+        templateUrl: 'views/profile.html'
       })
       .state('login', {
         url: '/login',

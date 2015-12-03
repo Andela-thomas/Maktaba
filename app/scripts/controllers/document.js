@@ -6,11 +6,6 @@ angular.module('maktaba.controllers')
         $('select').material_select();
       });
 
-      // add document
-      $scope.access = [
-        'Private',
-        'Public'
-      ];
       // load the document
       if (id) {
         Documents.get({
@@ -62,7 +57,11 @@ angular.module('maktaba.controllers')
       };
 
       $scope.addDocument = function() {
-        console.log($scope.document);
+        Documents.save($scope.document, function(res) {
+          if (res.dateCreated) {
+            Materialize.toast('You document has been created succesfully', 5000);
+          }
+        });
       };
 
 

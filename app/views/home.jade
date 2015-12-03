@@ -1,27 +1,116 @@
-.banner
-  .slider
-    ul.slides
-      li
-        img(src='http://lorempixel.com/580/250/nature/1' height="9000")
-        // random image
-        .caption.center-align
-          h3 This is our big Tagline!
-          h5.light.grey-text.text-lighten-3 Here's our small slogan.
-      li
-        img(src='http://lorempixel.com/580/250/nature/2')
-        // random image
-        .caption.left-align
-          h3 Left Aligned Caption
-          h5.light.grey-text.text-lighten-3 Here's our small slogan.
-      li
-        img(src='http://lorempixel.com/580/250/nature/3')
-        // random image
-        .caption.right-align
-          h3 Right Aligned Caption
-          h5.light.grey-text.text-lighten-3 Here's our small slogan.
-      li
-        img(src='http://lorempixel.com/580/250/nature/4')
-        // random image
-        .caption.center-align
-          h3 This is our big Tagline!
-          h5.light.grey-text.text-lighten-3 Here's our small slogan.
+#index-banner.parallax-container
+  .section.no-pad-bot
+    .container
+      br
+      br
+      h1.header.center.teal-text.text-lighten-2 Parallax Theme
+      .row.center
+        h5.header.col.s12.light Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      .row.center
+        a.btn-large.waves-effect.waves-light.purple.lighten-1(href='#') Find more
+      br
+      br
+  .parallax
+    img(src='images/dream-infrared-meadow-2220-824x550.jpg', alt='Unsplashed background img 2')
+.container
+  .section
+    // Icon Section
+    .row
+      .col.s12.m4
+        .icon-block
+          h2.center(style='color:#333')
+            i.mdi-av-new-releases
+          h5.center Feature one
+          p.light
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      .col.s12.m4
+        .icon-block
+          h2.center(style='color:#333')
+            i.mdi-hardware-cast
+          h5.center Feature two
+          p.light
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      .col.s12.m4
+        .icon-block
+          h2.center(style='color:#333')
+            i.mdi-hardware-keyboard-alt
+          h5.center Feature three
+          p.light
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+.parallax-container.valign-wrapper
+  .section.no-pad-bot
+    .container
+      .row.center
+        h5.header.col.s12(style='color: #333;') Vertically centered text
+  .parallax
+    img(src='images/1412019519aax7e.jpg', alt='img')
+#projects.container.section.scrollspy
+  .section
+    br
+    br
+    h4.center Our Work
+    br
+    .row
+      .col.s6
+        img.materialboxed.responsive-img(data-caption='Description about the work or project', src='images/blur-flowers-nature-471-827x550.jpg')
+      .col.s6
+        img.materialboxed.responsive-img(data-caption='Description about the work or project', src='images/1415117217bc45x.jpg')
+    // row
+    .row
+      .col.s6
+        img.materialboxed.responsive-img(data-caption='Description about the work or project', src='images/1397154567yttyy.jpg')
+      .col.s6
+        img.materialboxed.responsive-img(data-caption='Description about the work or project', src='images/1399827845b0i1k.jpg')
+    // row
+    .center
+      a.waves-effect.waves-light.btn.purple.lighten-1 View more
+#About.parallax-container.valign-wrapper.section.scrollspy
+  .section.no-pad-bot
+    .container
+      .center.row.col.s3
+        h3 About Us
+      .center.row.col.s12
+        p
+          | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+  .parallax
+    img(src='images/1423255813yuwjj.jpg', alt='img')
+#contactus.container.section.scrollspy
+  .section
+    br
+    br
+    h2 Contact Us
+    .row
+      form.col.s8
+        .row
+          .input-field.col.s6
+            input#name.validate(type='text')
+            label(for='name') Your Name
+          .input-field.col.s6
+            input#email.validate(type='email')
+            label(for='email') Your Email
+        // row
+        .row
+          .input-field.col.s12
+            input#message-sub.validate(type='email')
+            label(for='message-sub') Message Subject
+        .row
+          .input-field.col.s12
+            textarea#text_area.materialize-textarea
+            label(for='text_area') Your Message
+        div
+          a.waves-effect.waves-light.btn.purple.lighten-1
+            | Send Message
+            i.mdi-content-send.right
+      .col.s12.m4
+        p
+          | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+        ul.share-buttons
+          li
+            a(href='https://www.facebook.com/sharer/sharer.php?u=&t=', target='_blank', title='Share on Facebook')
+              img(src='images/flat_web_icon_set/inverted/Facebook.png')
+          li
+            a(href='https://twitter.com/intent/tweet?source=&text=:%20', target='_blank', title='Tweet')
+              img(src='images/flat_web_icon_set/inverted/Twitter.png')
+          li
+            a(href='https://plus.google.com/share?url=', target='_blank', title='Share on Google+')
+              img(src='images/flat_web_icon_set/inverted/GooglePlus.png')
