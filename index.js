@@ -17,7 +17,7 @@ var config = require('./server/config')[env],
   session = require('express-session');
 
 //connect to mongodb
-mongoose.connect(config.db, function(err, conn) {
+mongoose.connect(config.db, function(err) {
   if (err) {
     console.log('connection failed: ' + err);
     process.exit(1);
@@ -77,7 +77,6 @@ if (env === 'development') {
   });
 }
 
-// production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);

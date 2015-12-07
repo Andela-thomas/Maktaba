@@ -8,14 +8,10 @@ angular.module('maktaba.controllers')
       $scope.login = function() {
         Users.login($scope.user, function(err, res) {
           if (res.token) {
-            $rootScope.isLoggedIn = Auth.isLoggedIn();
-            // add user token to the local storage
             Auth.setToken(res.token);
             // toast message
             Materialize.toast(res.message, 5000);
-            $location.path('/dashboard').search({
-              id: res.user._id
-            });
+            $location.path('/dashboard');
           } else {
             Materialize.toast(res.message, 5000);
           }
@@ -42,17 +38,5 @@ angular.module('maktaba.controllers')
           }
         });
       };
-
-      $scope.logout = function() {
-        Users.logout($scope.user, function(err, res) {
-          if (!err) {
-            delete $rootScope.currentUser;
-            $state.go('login');
-          } else {
-            console.log(err, res);
-          }
-        });
-      };
-
     }
   ]);

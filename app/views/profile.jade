@@ -1,0 +1,112 @@
+// START CONTENT
+section#content
+  // start container
+  .container
+    #profile-page.section
+      // profile-page-header
+      #profile-page-header.card
+        .card-image.waves-effect.waves-block.waves-light
+          img.activator(src='images/user-profile-bg.jpg', alt='user background' height="300")
+        figure.card-profile-image
+          img.circle.z-depth-2.responsive-img.activator(src='http://lorempixel.com/150/150/people', alt='profile image')
+        .card-content
+          .row
+            .col.s2.offset-s2
+              h4.card-title.grey-text.text-darken-4 {{user.name.first}} {{user.name.last}}
+              p.medium-small.grey-text {{user.username}}
+            .col.s2.center-align
+              h4.card-title.grey-text.text-darken-4 {{count}} +
+              p.medium-small.grey-text Documents
+            .col.s2.center-align
+              h4.card-title.grey-text.text-darken-4 $ 1,253,000
+              p.medium-small.grey-text Busness Profit
+            .col.s1.right-align
+              a(ng-click="editProfile()").btn-floating.activator.waves-effect.waves-light.darken-2.right
+                i.mdi-action-perm-identity
+      #profile-page-content.row
+        // profile-page-sidebar
+        #profile-page-sidebar.col.s12.m4
+          // Profile About
+          .card.amber.darken-2
+            .card-content.white-text.center-align
+              p.card-title
+                i.mdi-social-group-add
+                |  {{ users.length}}
+              p Available users
+          // Profile About
+          // Profile About Details
+          ul#profile-page-about-details.collection.z-depth-1
+            li.collection-item
+              .row
+                .col.s5.grey-text.darken-1
+                  i.mdi-action-wallet-travel
+                  |  Name
+                .col.s7.grey-text.text-darken-4.right-align {{user.name.first}} {{user.name.last}}
+            li.collection-item
+              .row
+                .col.s5.grey-text.darken-1
+                  i.mdi-social-poll
+                  |  Email
+                .col.s7.grey-text.text-darken-4.right-align {{user.email}}
+            li.collection-item
+              .row
+                .col.s5.grey-text.darken-1
+                  i.mdi-social-domain
+                  |  username
+                .col.s7.grey-text.text-darken-4.right-align {{user.username}}
+           // / Profile About Details
+          // Profile feed
+        // profile-page-sidebar
+        // profile-page-wall
+        #profile-page-wall.col.s12.m8
+          // medium video
+          // Profile feed
+          ul#profile-page-about-feed.collection.z-depth-1(ng-if="!edit")
+            li.collection-item.avatar(ng-if="documents.length < 1")
+              img.circle(src='http://lorempixel.com/50/50/people', alt='')
+              p
+                | No document available
+              a.secondary-content(href='#!')
+                i.mdi-action-grade
+            li.collection-item.avatar(ng-repeat="document in documents | limitTo: 4")
+              img.circle(src='http://lorempixel.com/50/50/people', alt='')
+              span.title {{document.title}}
+              p
+                {{document.content | limitTo: 50}}
+              a.secondary-content(href='#!')
+                i.mdi-action-grade
+
+          #profile-page-wall-post.card-panel(ng-if="edit")
+              h5 Edit profile
+              hr
+              form(ng-submit="updateUser()")
+                  //fist name
+                  .input-field.col.s12
+                    i.material-icons.prefix account_circle
+                    input(type="text" ng-model="user.firstname" required)
+                    label(for="email") First Name
+                    //last name
+                  .input-field.col.s12
+                    i.material-icons.prefix account_circle
+                    input.validate(type="text" ng-model="user.lastname" required)
+                    label(for="email") Last Name
+                    //username
+                  .input-field.col.s12
+                    i.material-icons.prefix perm_identity
+                    input.validate(type="text" ng-model="user.username" required)
+                    label(for="password") Username
+                    br
+                    // Email
+                  .input-field.col.s12
+                    i.material-icons.prefix email
+                    input.validate(type="email"  ng-model="user.email" required)
+                    label(for="email") Email
+                  .input-field.col.s12
+                    i.material-icons.prefix vpn_key
+                    input.validate(type="password" ng-model="user.password" required)
+                    label(for="Password") Password
+                div
+                  button.btn.waves-effect.waves-light.purple.lighten-1(type="submit", name="action")
+                    | update
+                    i.material-icons.right edit
+

@@ -13,11 +13,11 @@
   // Require Controllers
   require('./controllers/footer');
   require('./controllers/home');
-  require('./controllers/about');
   require('./controllers/header');
   require('./controllers/login');
   require('./controllers/dashboard');
   require('./controllers/document');
+  require('./controllers/profile');
   window.app = angular.module('maktaba', [
     'maktaba.controllers',
     'maktaba.services',
@@ -28,37 +28,27 @@
     'ngResource',
   ]);
 
-  window.app.run(['$rootScope', '$location', 'Users', 'Auth',
-    function($rootScope, $location, Users, Auth) {
-      $(function() {
-        $(".button-collapse").sideNav({
-          closeOnClick: true
-        });
+  window.app.run(['$rootScope', '$location', 'Users',
+    function($rootScope, $location, Users) {
+      /*Preloader*/
+      $(window).load(function() {
+        setTimeout(function() {
+          $('body').addClass('loaded');
+        }, 200);
+      });
+      $(".button-collapse").sideNav({
+        closeOnClick: true
       });
       // Get token
-      $rootScope.$on("$locationChangeStart", function(event, next, current) {
+      $rootScope.$on("$locationChangeStart", function() {
         //Do your things
-        if (Auth.isLoggedIn()) {
-          // Get the current logged in user
-          Users.user(function(err, res) {
-            if (res) {
-              $rootScope.isLoggedIn = Auth.isLoggedIn();
-              $rootScope.user = res;
-            } else {
-              console.log('Error', err);
-            }
-          });
-        }
+        Users.user(function(err, res) {
+          if (res) {
+            $rootScope.user = res;
+            console.log(res);
+          }
+        });
       });
-
-
-      $rootScope.menu = [{
-        name: 'Home',
-        state: 'home'
-      }, {
-        name: 'About',
-        state: 'about'
-      }];
     }
   ]);
 
@@ -91,10 +81,10 @@
         controller: 'DocumentCtrl',
         templateUrl: 'views/add-document.html'
       })
-      .state('about', {
-        url: '/about',
-        controller: 'AboutCtrl',
-        templateUrl: 'views/about.html'
+      .state('profile', {
+        url: '/users/profile',
+        controller: 'ProfileCtrl',
+        templateUrl: 'views/profile.html'
       })
       .state('login', {
         url: '/login',
@@ -103,8 +93,7 @@
       })
       .state('404', {
         url: '/404',
-        templateUrl: 'views/404.html',
-        controller: function($scope) {}
+        templateUrl: 'views/404.html'
       });
 
     $locationProvider.html5Mode(true);

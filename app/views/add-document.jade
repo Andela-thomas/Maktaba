@@ -1,7 +1,30 @@
-.container.document.whit
-  .row
-    .col.s12.m12
-      .card-panel
-        span
-          | I am a very simple card. I am good at containing small bits of information.
-          | I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+.container.document
+  .card-panel
+    .row
+    .col.s12.m5
+      .row
+        form.col.s12(ng-submit="addDocument()")
+          .row
+            //fist name
+            .input-field.col.s7
+              i.material-icons.prefix subject
+              input(type="text" ng-model="document.title" required)
+              label(for="title") Document Title
+              br
+              //access rights
+            .input-field.col.s7
+              i.material-icons.prefix select_all
+              label Browser Select
+              select.browser-default.select(ng-model="document.access" )
+                option( value='', disabled='', selected='') Choose your option
+                option( value='private') Private
+                option(value='public') Public
+
+            .input-field.col.s12
+              i.material-icons.prefix content_copy
+              textarea#textarea1.materialize-textarea(ng-model="document.content" rows="5")
+              label(for='textarea1') Document Body
+          div
+            button.btn.waves-effect.waves-light.teal.darken-1(type="submit", name="action")
+              | Submit
+              i.material-icons.right send

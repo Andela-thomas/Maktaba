@@ -1,19 +1,15 @@
 angular.module('maktaba.controllers')
-  .controller('HeaderCtrl', ['$rootScope', '$scope', '$state', '$window', 'Users', 'Auth',
-    function($rootScope, $state, $scope, $window, Users, Auth) {
+  .controller('HeaderCtrl', ['$scope', '$state', '$window', 'Auth',
+    function($scope, $state, $window, Auth) {
       // logout
       $scope.logout = function() {
         Auth.logout();
         console.log('logging out');
-        $window.location('/');
+        $window.location = '/';
       };
 
       $scope.goto = function() {
         $state.go('addDocument');
-        console.log('I MA     NNNN');
       };
-
-
-
     }
   ]);

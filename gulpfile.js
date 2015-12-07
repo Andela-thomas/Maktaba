@@ -9,7 +9,6 @@ var gulp = require('gulp'),
   imagemin = require('gulp-imagemin'),
   nodemon = require('gulp-nodemon'),
   karma = require('gulp-karma'),
-  protractor = require('gulp-protractor').protractor,
   mocha = require('gulp-mocha'),
   paths = {
     public: 'public/**',
@@ -21,33 +20,11 @@ var gulp = require('gulp'),
       '!app/images/**/*',
       'app/**/*.*'
     ],
-    unitTests: [
-      'public/lib/angular/angular.min.js',
-      'public/lib/angular-ui-router/release/angular-ui-router.min.js',
-      'public/js/app.js',
-      'tests/client/**/*.spec.js'
-    ],
+    unitTests: [],
     serverTests: ['./tests/server/**/*.spec.js'],
     libTests: ['lib/tests/**/*.js'],
     styles: 'app/styles/*.+(less|css)'
   };
-
-gulp.task('test:fend', function() {
-  // Be sure to return the stream
-  return gulp.src(paths.unitTests)
-    .pipe(karma({
-      configFile: __dirname + '/karma.conf.js',
-      // autoWatch: false,
-      // singleRun: true
-      action: 'run'
-
-    }))
-    .on('error', function(err) {
-      // Make sure failed tests cause gulp to exit non-zero
-      console.log('error', err);
-      throw err;
-    });
-});
 
 gulp.task('less', function() {
   gulp.src(paths.styles)
@@ -100,22 +77,25 @@ gulp.task('nodemon', function() {
       ext: 'js',
       ignore: ['public/', 'node_modules/']
     })
-    .on('change', 'browserify')
+    .on('change', ['lint'])
     .on('restart', function() {
       console.log('>> node restart');
     });
 });
 
-gulp.task('test:e2e', function(cb) {
-  gulp.src(['./tests/e2e/*.js'])
-    .pipe(protractor({
-      configFile: './protractor.conf.js',
-      args: ['--baseUrl', 'http://127.0.0.1:8000']
+gulp.task('test:fend', ['browserify', 'bower'], function() {
+  // Be sure to return the stream
+  return gulp.src(paths.unitTests)
+    .pipe(karma({
+      configFile: __dirname + '/karma.conf.js',
+      //autoWatch: true,
+      // singleRun: true
+      action: 'run'
     }))
-    .on('error', function(e) {
-      console.log(e);
-    })
-    .on('end', cb);
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
 });
 
 gulp.task('watch', function() {
@@ -126,12 +106,11 @@ gulp.task('watch', function() {
   // gulp.watch(paths.public).on('change', livereload.changed);
 });
 
-gulp.task('build', ['jade', 'less', 'static-files',
+gulp.task('build', ['static-files', 'jade', 'less',
   'images', 'browserify', 'bower'
 ]);
 gulp.task('heroku:production', ['build']);
 gulp.task('heroku:staging', ['build']);
 gulp.task('production', ['nodemon', 'build']);
-gulp.task('test', ['test:fend', 'test:e2e']);
-
+gulp.task('test', ['test:fend']);
 gulp.task('default', ['nodemon', 'watch', 'build']);

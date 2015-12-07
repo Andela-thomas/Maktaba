@@ -2,19 +2,21 @@ var Doc = require('../models/document'),
   docHandler = {
     create: function(req, res) {
       Doc.create({
-        ownerId: req.body.userId,
+        ownerId: req.decoded._id,
         title: req.body.title,
         access: req.body.access,
         content: req.body.content
       }, function(err, doc) {
-        if (err)
+        if (err) {
+          console.log(err);
           res.send(err);
-        if (!doc)
+        } else if (!doc) {
           res.status(400).send({
             error: 'Document not created'
           });
-        else
+        } else {
           res.json(doc);
+        }
       });
     },
 
