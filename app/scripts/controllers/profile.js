@@ -26,6 +26,7 @@ angular.module('maktaba.controllers')
 
 
     $scope.updateUser = function() {
+      console.log($scope.user);
       Users.update({
         id: $rootScope.user._id
       }, $scope.user, function(res) {
