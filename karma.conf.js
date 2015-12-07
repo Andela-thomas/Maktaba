@@ -16,12 +16,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'public/lib/angular/angular.min.js',
+      'public/lib/angular-ui-router/release/angular-ui-router.min.js',
+      'public/lib/angular-aria/angular-aria.min.js',
+      'public/lib/angular-route/angular-route.min.js',
+      'public/lib/angular-animate/angular-animate.min.js',
       'public/lib/angular-mocks/angular-mocks.js',
-      'public/lib/angular/angular.js',
-      'public/lib/angular-resource/angular-resource.js',
-      'public/lib/angular-route/angular-route.js',
-      'public/js/app.js'
-
+      'public/lib/angular-resource/angular-resource.min.js',
+      'public/lib/jquery/dist/jquery.min.js',
+      'public/lib/Materialize/dist/js/materialize.min.js',
+      'public/js/app.js',
+      'tests/unit/client/**/*.js'
     ],
 
 
@@ -32,14 +37,16 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/
     // karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      'public/js/app.js': ['coverage']
+    },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl',
     // 'coverage', 'spec', 'failed'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: [ /*'coverage',*/ 'progress'],
+    reporters: ['coverage', 'progress'],
 
     // web server port
     port: 9876,
@@ -87,6 +94,10 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage/'
+    }
   });
 };

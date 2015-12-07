@@ -2,18 +2,13 @@ angular.module('maktaba.controllers')
   .controller('DocumentCtrl', ['$scope', '$state', '$stateParams', '$location', 'Users', 'Documents',
     function($scope, $state, $stateParams, $location, Users, Documents) {
       var id = $stateParams.id;
-      $(function() {
-        $('select').material_select();
-      });
-
+      $('select').material_select();
       // load the document
       if (id) {
         Documents.get({
           id: id
         }, function(data) {
           $scope.document = data;
-          $('#content').val($scope.document.content);
-          $('#content').trigger('autoresize');
           var id = data.ownerId;
           Users.get({
             id: id
@@ -30,9 +25,7 @@ angular.module('maktaba.controllers')
         }, $scope.document, function(res) {
           if (res.message) {
             Materialize.toast(res.message, 5000);
-            $location.path('dashboard').search({
-              id: $scope.user._id
-            });
+            //$state.go('dashboard');
           } else {
             Materialize.toast(res.error, 5000);
           }
@@ -47,9 +40,7 @@ angular.module('maktaba.controllers')
         }, function(res) {
           if (res.ok) {
             Materialize.toast('Delete successful', 5000);
-            $location.path('dashboard').search({
-              id: $scope.user._id
-            });
+            $state.go('dashboard');
           } else {
             Materialize.toast('Delete failed', 5000);
           }
@@ -63,7 +54,5 @@ angular.module('maktaba.controllers')
           }
         });
       };
-
-
     }
   ]);
