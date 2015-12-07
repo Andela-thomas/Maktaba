@@ -1,6 +1,6 @@
 angular.module('maktaba.controllers')
-  .controller('HeaderCtrl', ['$scope', '$state', '$window', 'Users', 'Auth',
-    function($scope, $state, $window, Users, Auth) {
+  .controller('HeaderCtrl', ['$scope', '$state', '$window', 'Auth',
+    function($scope, $state, $window, Auth) {
       // logout
       $scope.logout = function() {
         Auth.logout();
@@ -10,10 +10,6 @@ angular.module('maktaba.controllers')
 
       $scope.goto = function() {
         $state.go('addDocument');
-        console.log('I MA     NNNN');
       };
-
-
-
     }
   ]);

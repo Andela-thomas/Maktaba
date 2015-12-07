@@ -1,7 +1,7 @@
 angular.module('maktaba.services')
   .factory('Auth', ['Token', function(Token) {
     return {
-      isLoggedIn: function(token) {
+      isLoggedIn: function() {
         if (Token.get()) {
           return true;
         } else {
