@@ -12,14 +12,14 @@ section#content
         .card-content
           .row
             .col.s2.offset-s2
-              h4.card-title.grey-text.text-darken-4 {{user.name.first}} {{user.name.last}}
-              p.medium-small.grey-text {{user.username}}
+              h4.card-title.grey-text.text-darken-4 {{user.name.first}}
+              p.medium-small.grey-text {{user.name.last}}
             .col.s2.center-align
               h4.card-title.grey-text.text-darken-4 {{count}} +
               p.medium-small.grey-text Documents
             .col.s2.center-align
-              h4.card-title.grey-text.text-darken-4 $ 1,253,000
-              p.medium-small.grey-text Busness Profit
+              h4.card-title.grey-text.text-darken-4 {{user.username}}
+              p.medium-small.grey-text Username
             .col.s1.right-align
               a(ng-click="editProfile()").btn-floating.activator.waves-effect.waves-light.darken-2.right
                 i.mdi-action-perm-identity
