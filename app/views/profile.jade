@@ -12,29 +12,27 @@ section#content
         .card-content
           .row
             .col.s2.offset-s2
-              h4.card-title.grey-text.text-darken-4 {{user.name.first}} {{user.name.last}}
-              p.medium-small.grey-text {{user.email}}
+              h4.card-title.grey-text.text-darken-4 {{user.name.first}}
+              p.medium-small.grey-text {{user.name.last}}
             .col.s2.center-align
-              h4.card-title.grey-text.text-darken-4 10+
-              p.medium-small.grey-text Work Experience
+              h4.card-title.grey-text.text-darken-4 {{count}} +
+              p.medium-small.grey-text Documents
             .col.s2.center-align
-              h4.card-title.grey-text.text-darken-4 6
-              p.medium-small.grey-text Completed Projects
-            .col.s2.center-align
-              h4.card-title.grey-text.text-darken-4 $ 1,253,000
-              p.medium-small.grey-text Busness Profit
+              h4.card-title.grey-text.text-darken-4 {{user.username}}
+              p.medium-small.grey-text Username
             .col.s1.right-align
-              a.btn-floating.activator.waves-effect.waves-light.darken-2.right
+              a(ng-click="editProfile()").btn-floating.activator.waves-effect.waves-light.darken-2.right
                 i.mdi-action-perm-identity
       #profile-page-content.row
         // profile-page-sidebar
         #profile-page-sidebar.col.s12.m4
           // Profile About
-          .card.light-blue
-            .card-content.white-text
-              span.card-title About Me!
-              p
-                | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+          .card.amber.darken-2
+            .card-content.white-text.center-align
+              p.card-title
+                i.mdi-social-group-add
+                |  {{ users.length}}
+              p Available users
           // Profile About
           // Profile About Details
           ul#profile-page-about-details.collection.z-depth-1
@@ -42,85 +40,73 @@ section#content
               .row
                 .col.s5.grey-text.darken-1
                   i.mdi-action-wallet-travel
-                  |  Project
-                .col.s7.grey-text.text-darken-4.right-align ABC Name
+                  |  Name
+                .col.s7.grey-text.text-darken-4.right-align {{user.name.first}} {{user.name.last}}
             li.collection-item
               .row
                 .col.s5.grey-text.darken-1
                   i.mdi-social-poll
-                  |  Skills
-                .col.s7.grey-text.text-darken-4.right-align HTML, CSS
+                  |  Email
+                .col.s7.grey-text.text-darken-4.right-align {{user.email}}
             li.collection-item
               .row
                 .col.s5.grey-text.darken-1
                   i.mdi-social-domain
-                  |  Lives in
-                .col.s7.grey-text.text-darken-4.right-align NY, USA
-            li.collection-item
-              .row
-                .col.s5.grey-text.darken-1
-                  i.mdi-social-cake
-                  |  Birth date
-                .col.s7.grey-text.text-darken-4.right-align 18th June, 1991
-          // / Profile About Details
-          // Profile About
-          .card.amber.darken-2
-            .card-content.white-text.center-align
-              p.card-title
-                i.mdi-social-group-add
-                |  3685
-              p Followers
-          // Profile About
-          // Profile feed
-          ul#profile-page-about-feed.collection.z-depth-1
-            li.collection-item.avatar
-              img.circle(src='http://lorempixel.com/50/50/people', alt='')
-              span.title Project Title
-              p
-                | Task assigned to new changes.
-                br
-                span.ultra-small Second Line
-              a.secondary-content(href='#!')
-                i.mdi-action-grade
-            li.collection-item.avatar
-              i.mdi-file-folder.circle
-              span.title New Project
-              p
-                | First Line of Project Work
-                br
-                span.ultra-small Second Line
-              a.secondary-content(href='#!')
-                i.mdi-social-domain
-            li.collection-item.avatar
-              i.mdi-action-assessment.circle.green
-              span.title New Payment
-              p
-                | Last UK Project Payment
-                br
-                span.ultra-small $ 3,684.00
-              a.secondary-content(href='#!')
-                i.mdi-editor-attach-money
-            li.collection-item.avatar
-              i.mdi-av-play-arrow.circle.red
-              span.title Latest News
-              p
-                | company management news
-                br
-                span.ultra-small Second Line
-              a.secondary-content(href='#!')
-                i.mdi-action-track-changes
+                  |  username
+                .col.s7.grey-text.text-darken-4.right-align {{user.username}}
+           // / Profile About Details
           // Profile feed
         // profile-page-sidebar
         // profile-page-wall
         #profile-page-wall.col.s12.m8
           // medium video
-          #profile-page-wall-post.card
-            .card-image
-              img(src='http://lorempixel.com/600/300/people')
-              span.card-title Card Title
-            .card-content
+          // Profile feed
+          ul#profile-page-about-feed.collection.z-depth-1(ng-if="!edit")
+            li.collection-item.avatar(ng-if="documents.length < 1")
+              img.circle(src='http://lorempixel.com/50/50/people', alt='')
               p
-                | I am a very simple card. I am good at containing small bits of information.
-                | I am convenient because I require little markup to use effectively.
-            .card-action
-              a(href='#') This is a link
+                | No document available
+              a.secondary-content(href='#!')
+                i.mdi-action-grade
+            li.collection-item.avatar(ng-repeat="document in documents | limitTo: 4")
+              img.circle(src='http://lorempixel.com/50/50/people', alt='')
+              span.title {{document.title}}
+              p
+                {{document.content | limitTo: 50}}
+              a.secondary-content(href='#!')
+                i.mdi-action-grade
+
+          #profile-page-wall-post.card-panel(ng-if="edit")
+              h5 Edit profile
+              hr
+              form(ng-submit="updateUser()")
+                  //fist name
+                  .input-field.col.s12
+                    i.material-icons.prefix account_circle
+                    input(type="text" ng-model="user.firstname" required)
+                    label(for="email") First Name
+                    //last name
+                  .input-field.col.s12
+                    i.material-icons.prefix account_circle
+                    input.validate(type="text" ng-model="user.lastname" required)
+                    label(for="email") Last Name
+                    //username
+                  .input-field.col.s12
+                    i.material-icons.prefix perm_identity
+                    input.validate(type="text" ng-model="user.username" required)
+                    label(for="password") Username
+                    br
+                    // Email
+                  .input-field.col.s12
+                    i.material-icons.prefix email
+                    input.validate(type="email"  ng-model="user.email" required)
+                    label(for="email") Email
+                  .input-field.col.s12
+                    i.material-icons.prefix vpn_key
+                    input.validate(type="password" ng-model="user.password" required)
+                    label(for="Password") Password
+                div
+                  button.btn.waves-effect.waves-light.purple.lighten-1(type="submit", name="action")
+                    | update
+                    i.material-icons.right edit
+

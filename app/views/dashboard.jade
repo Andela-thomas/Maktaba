@@ -3,9 +3,11 @@
     ul.collection.with-header
       li.collection-header.grey.lighten-3
         h6 Available users
-      li.collection-item(ng-repeat="user in users")
-        | {{ user.name.first + ' ' + user.name.last}}
-
+      li.collection-item(ng-click="view(user._id)" ng-repeat="user in users")
+        div
+          | {{ user.name.first + ' ' + user.name.last}}
+          a.secondary-content(href='')
+            i.material-icons launch
   .col.s12.m8.l9
     ul.collection.with-header
       li.collection-header.grey.lighten-3
