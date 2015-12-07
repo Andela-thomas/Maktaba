@@ -4,13 +4,19 @@
       li.collection-header.grey.lighten-3
         h6 Available users
       li.collection-item(ng-click="view(user._id)" ng-repeat="user in users")
-        | {{ user.name.first + ' ' + user.name.last}}
-
+        div
+          | {{ user.name.first + ' ' + user.name.last}}
+          a.secondary-content(href='')
+            i.material-icons launch
   .col.s12.m8.l9
     ul.collection.with-header
       li.collection-header.grey.lighten-3
         h6 Documents
-      li.collection-item.avatar(ng-repeat="document in documents")
+       li.collection-item.avatar(ng-if="documents.length < 1")
+        i.material-icons.circle.green folder
+        div
+          |  No documents available
+      li.collection-item.avatar(ng-if="documents" ng-repeat="document in documents")
         i.material-icons.circle.green folder
         span.title
          a(href="" ng-click="readMore(document._id)")
