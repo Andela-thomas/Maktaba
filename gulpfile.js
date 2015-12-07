@@ -9,7 +9,6 @@ var gulp = require('gulp'),
   imagemin = require('gulp-imagemin'),
   nodemon = require('gulp-nodemon'),
   karma = require('gulp-karma'),
-  mocha = require('gulp-mocha'),
   paths = {
     public: 'public/**',
     jade: ['!app/shared/**', 'app/**/*.jade'],
