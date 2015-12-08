@@ -1,11 +1,10 @@
 angular.module('maktaba.controllers')
-  .controller('HeaderCtrl', ['$scope', '$state', '$window', 'Auth',
-    function($scope, $state, $window, Auth) {
+  .controller('HeaderCtrl', ['$scope', '$state', 'Auth',
+    function($scope, $state, Auth) {
       // logout
       $scope.logout = function() {
         Auth.logout();
-        console.log('logging out');
-        $window.location = '/';
+        $state.go('home');
       };
 
       $scope.goto = function() {

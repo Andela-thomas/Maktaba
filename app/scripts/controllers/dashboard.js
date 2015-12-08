@@ -10,11 +10,11 @@ angular.module('maktaba.controllers')
 
 
       $scope.getDocuments = function(id) {
-        Users.getDocument(id, function(err, res) {
+        Users.getDocument(id, /* istanbul ignore next */ function(err, res) {
           $scope.documents = res;
         });
       };
-
+      /* istanbul ignore if */
       if ($rootScope.user) {
         $scope.getDocuments($rootScope.user._id);
       }
