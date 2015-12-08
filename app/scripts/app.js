@@ -32,7 +32,7 @@
     function($rootScope, $location, Users) {
       /*Preloader*/
       $(window).load(function() {
-        setTimeout(function() {
+        setTimeout( /* istanbul ignore next */ function() {
           $('body').addClass('loaded');
         }, 200);
       });
@@ -40,15 +40,17 @@
         closeOnClick: true
       });
       // Get token
-      $rootScope.$on("$locationChangeStart", function() {
-        //Do your things
-        Users.user(function(err, res) {
-          if (res) {
-            $rootScope.user = res;
-            console.log(res);
-          }
+      $rootScope.$on("$locationChangeStart",
+        /* istanbul ignore next */
+        function() {
+          //Do your things
+          Users.user(function(err, res) {
+            if (res) {
+              $rootScope.user = res;
+            }
+          });
         });
-      });
+
     }
   ]);
 

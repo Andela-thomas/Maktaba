@@ -14,10 +14,15 @@ describe('Dashboard controller  tests', function() {
     controller = $controller('DashboardCtrl', {
       $scope: scope
     });
+    scope.documents = [];
     spyOn(scope, 'readMore').and.callThrough();
+    spyOn(scope, 'getDocuments').and.callThrough();
+    spyOn(scope, 'view').and.callThrough();
     spyOn(Users, 'getDocument').and.callThrough();
     Users.query();
     scope.readMore();
+    scope.getDocuments();
+    scope.view();
     Users.getDocument();
   }));
 
@@ -37,6 +42,16 @@ describe('Dashboard controller  tests', function() {
     console.log(scope.documents);
     expect(Users.getDocument).toBeDefined();
     expect(Users.getDocument).toHaveBeenCalled();
+  });
+
+  it('should define and call $scope.getDocuments', function() {
+    expect(scope.getDocuments).toBeDefined();
+    expect(scope.getDocuments).toHaveBeenCalled();
+  });
+
+  it('should define and call scope.view', function() {
+    expect(scope.view).toBeDefined();
+    expect(scope.view).toHaveBeenCalled();
   });
 
 });

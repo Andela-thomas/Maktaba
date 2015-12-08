@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "Document management system using Express and MongoDb",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "private": true,
   "scripts": {
     "start": "node index.js",
     "test": "gulp test",
-    "build": "gulp heroku:production"
+    "build": "gulp heroku:staging"
   },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Andela-thomas/manager.git"
@@ -37,7 +34,7 @@
     "gulp-imagemin": "^2.3.0",
     "gulp-jade": "^1.1.0",
     "gulp-karma": "0.0.4",
-    "gulp-less": "^3.0.3",
+    "gulp-less": "^3.0.5",
     "gulp-nodemon": "^2.0.4",
     "gulp-path": "^2.0.0",
     "gulp-protractor": "^1.0.0",

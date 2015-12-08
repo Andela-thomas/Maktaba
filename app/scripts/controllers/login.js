@@ -6,35 +6,26 @@ angular.module('maktaba.controllers')
       $('select').material_select();
       // login
       $scope.login = function() {
-        Users.login($scope.user, function(err, res) {
-          if (res.token) {
-            Auth.setToken(res.token);
-            // toast message
-            Materialize.toast(res.message, 5000);
-            $location.path('/dashboard');
-          } else {
-            Materialize.toast(res.message, 5000);
-          }
-        });
+        Users.login($scope.user,
+          /* istanbul ignore next */
+          function(err, res) {
+            if (res.token) {
+              Auth.setToken(res.token);
+              // toast message
+              Materialize.toast(res.message, 5000);
+              $location.path('/dashboard');
+            } else {
+              Materialize.toast(res.message, 5000);
+            }
+          });
       };
-
-
       // register user
       $scope.register = function() {
-        Users.save($scope.user, function(response) {
+        Users.save($scope.user, /* istanbul ignore next */ function(response) {
           if (!response.errmsg) {
-            var message = 'You have been succefully registered. Go to login tab to sign in';
-            Materialize.toast(message, 3000);
+            Materialize.toast('Login succesfull', 3000);
           } else {
-            var error = response.errmsg.substring(49, 57);
-            var prefix;
-            if (error === 'email_1 ') {
-              prefix = 'Email';
-            } else {
-              prefix = 'Username';
-            }
-            error = prefix + ' already exist change and try again';
-            Materialize.toast(error, 3000);
+            Materialize.toast('Invalid username or password', 3000);
           }
         });
       };

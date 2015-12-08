@@ -16,17 +16,24 @@ describe('Header ctrl tests', function() {
     Auth = $injector.get('Auth');
     spyOn(scope, 'logout').and.callThrough();
     spyOn(scope, 'goto').and.callThrough();
+    spyOn(Auth, 'logout').and.callThrough();
     scope.logout();
     scope.goto();
+    Auth.logout();
   }));
 
   it('should define and call scope.logout', function() {
     expect(scope.logout).toBeDefined();
-    expect(scope.logout).toHaveBeenCalled();
+    expect(typeof scope.logout).toBe('function');
   });
 
   it('should define and call scope.goto', function() {
     expect(scope.goto).toBeDefined();
     expect(scope.goto).toHaveBeenCalled();
+  });
+
+  it('should define and call scope.goto', function() {
+    expect(Auth.logout).toBeDefined();
+    expect(Auth.logout).toHaveBeenCalled();
   });
 });
