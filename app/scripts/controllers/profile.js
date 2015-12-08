@@ -24,14 +24,16 @@ angular.module('maktaba.controllers')
 
     $scope.updateUser = function() {
       Users.update({
-        id: id
-      }, $scope.user, function(res) {
-        if (res.message) {
-          Materialize.toast(res.message, 5000);
-          $state.go('dashboard');
-        } else {
-          Materialize.toast(res.error, 5000);
-        }
-      });
+          id: id
+        }, $scope.user,
+        /* istanbul ignore next */
+        function(res) {
+          if (res.message) {
+            Materialize.toast(res.message, 5000);
+            $state.go('dashboard');
+          } else {
+            Materialize.toast(res.error, 5000);
+          }
+        });
     };
   }]);
