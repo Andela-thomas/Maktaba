@@ -1,8 +1,9 @@
 angular.module('maktaba.controllers')
-  .controller('HeaderCtrl', ['$scope', '$state', 'Auth',
-    function($scope, $state, Auth) {
+  .controller('HeaderCtrl', ['$scope', '$rootScope', '$state', 'Auth',
+    function($scope, $rootScope, $state, Auth) {
       // logout
       $scope.logout = function() {
+        delete $rootScope.user;
         Auth.logout();
         $state.go('home');
       };
