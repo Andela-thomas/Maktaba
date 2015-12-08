@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Document management system using Express and MongoDb",
   "main": "index.js",
-  "directories": {
-    "test": "test"
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js &\ngulp test",
+    "build": "gulp heroku:production"
   },
   "private": true,
   "scripts": {

@@ -45,9 +45,9 @@ var Doc = require('../models/document'),
     },
 
     update: function(req, res) {
-      console.log(req.body);
       Doc.update({
-        _id: req.params.id
+        _id: req.params.id,
+        ownerId: req.decoded._id
       }, {
         $set: {
           title: req.body.title,
