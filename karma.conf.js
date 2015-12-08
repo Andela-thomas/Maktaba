@@ -65,7 +65,7 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever
     // any file changes
     // on true, on Circle CI will break
-    autoWatch: false,
+    //autoWatch: false,
 
 
     // start these browsers
@@ -94,7 +94,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
     coverageReporter: {
       type: 'html',
       dir: 'coverage/'

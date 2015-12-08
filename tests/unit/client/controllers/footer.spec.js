@@ -1,36 +1,21 @@
-// describe('EventCtrl tests', function() {
-      //   var scope, controller;
-      //   beforeEach(function() {
-      //     module('vvida');
-      //   });
+describe('EventCtrl tests', function() {
+  var scope, controller;
+  beforeEach(function() {
+    module('maktaba');
+  });
 
-      //   beforeEach(inject(function($injector) {
-      //     var $controller = $injector.get('$controller');
-      //     scope = $injector.get('$rootScope');
-      //     controller = $controller('FooterCtrl', {
-      //       $scope: scope
-      //     });
-      //   }));
+  beforeEach(inject(function($injector) {
+    var $controller = $injector.get('$controller');
+    scope = $injector.get('$rootScope');
+    controller = $controller('FooterCtrl', {
+      $scope: scope
+    });
+  }));
 
-      //   it('should define scope.discover', function() {
-      //     expect(scope.discover).toBeDefined();
-      //     expect(typeof scope.discover).toBe('object');
-      //     expect(scope.discover instanceof Array).toBe(true);
-      //     expect(scope.discover.length).toBe(6);
-      //   });
-
-      //   it('should define scope.business', function() {
-      //     expect(scope.business).toBeDefined();
-      //     expect(typeof scope.business).toBe('object');
-      //     expect(scope.business instanceof Array).toBe(true);
-      //     expect(scope.business.length).toBe(6);
-      //   });
-
-      //   it('should define scope.about', function() {
-      //     expect(scope.about).toBeDefined();
-      //     expect(typeof scope.about).toBe('object');
-      //     expect(scope.about instanceof Array).toBe(true);
-      //     expect(scope.about.length).toBe(6);
-      //   });
-
-      // });
+  it('should define scope.discover', function() {
+    expect(scope.footer).toBeDefined();
+    expect(typeof scope.footer).toBe('object');
+    expect(scope.footer.appName).toBe('Maktaba');
+    expect(scope.footer.description).toBe('This is one bad ass document management system');
+  });
+});

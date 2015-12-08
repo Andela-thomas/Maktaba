@@ -14,7 +14,7 @@ describe('EventCtrl tests', function() {
     state = $injector.get('$state');
     Users = $injector.get('Users');
     Documents = $injector.get('Documents');
-    //spyOn(scope, 'update').and.callThrough();
+    spyOn(scope, 'update').and.callThrough();
     spyOn(scope, 'delete').and.callThrough();
     spyOn(scope, 'addDocument').and.callThrough();
     scope.document = {
@@ -24,7 +24,7 @@ describe('EventCtrl tests', function() {
     };
 
     scope.addDocument();
-    //scope.update();
+    scope.update();
     scope.delete();
   }));
 
@@ -33,15 +33,23 @@ describe('EventCtrl tests', function() {
     expect(scope.delete).toHaveBeenCalled();
   });
 
-  // it('should define and call scope.update', function() {
-  //   expect(scope.update).toBeDefined();
-  //   expect(scope.update).toHaveBeenCalled();
-  // });
-
-
+  it('should define and call scope.update', function() {
+    expect(scope.update).toBeDefined();
+    expect(scope.update).toHaveBeenCalled();
+  });
 
   it('should define and call scope.delete', function() {
     expect(scope.delete).toBeDefined();
     expect(scope.delete).toHaveBeenCalled();
+  });
+
+  it('should define $scope.document', function() {
+    expect(scope.document).toBeDefined();
+    expect(typeof scope.document).toBe('object');
+  });
+
+  it('should define Users.get', function() {
+    expect(Users.get()).toBeDefined();
+    expect(typeof Users.get()).toBe('object');
   });
 });
