@@ -6,19 +6,19 @@ angular.module('maktaba.controllers')
       $('select').material_select();
       // login
       $scope.login = function() {
-        Users.login($scope.user, function(err, res) {
-          if (res.token) {
-            Auth.setToken(res.token);
-            // toast message
-            Materialize.toast(res.message, 5000);
-            $location.path('/dashboard');
-          } else {
-            Materialize.toast(res.message, 5000);
-          }
-        });
+        Users.login($scope.user,
+          /* istanbul ignore next */
+          function(err, res) {
+            if (res.token) {
+              Auth.setToken(res.token);
+              // toast message
+              Materialize.toast(res.message, 5000);
+              $location.path('/dashboard');
+            } else {
+              Materialize.toast(res.message, 5000);
+            }
+          });
       };
-
-
       // register user
       $scope.register = function() {
         Users.save($scope.user, /* istanbul ignore next */ function(response) {
