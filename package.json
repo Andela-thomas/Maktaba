@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "Document management system using Express and MongoDb",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "private": true,
   "scripts": {
-    "start": "node index.js",
-    "test": "gulp test",
+    "start": "node index.js & gulp heroku:production",
+    "test": "node index.js &\ngulp test",
     "build": "gulp heroku:production"
   },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Andela-thomas/manager.git"
