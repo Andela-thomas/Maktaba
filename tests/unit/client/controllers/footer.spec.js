@@ -16,6 +16,6 @@ describe('EventCtrl tests', function() {
     expect(scope.footer).toBeDefined();
     expect(typeof scope.footer).toBe('object');
     expect(scope.footer.appName).toBe('Maktaba');
-    expect(scope.footer.description).toBe('This is one bad ass document management system');
+    expect(scope.footer.description).toBe('Just think and let us worry about the rest');
   });
 });

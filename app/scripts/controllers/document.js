@@ -11,7 +11,7 @@ angular.module('maktaba.controllers')
         Users.get({
           id: $scope.document.ownerId
         }, /* istanbul ignore function */ function(user) {
-          $scope.user = user;
+          $scope.docUser = user;
         });
       });
 
@@ -48,6 +48,7 @@ angular.module('maktaba.controllers')
         Documents.save($scope.document, /* istanbul ignore next */ function(res) {
           if (res.dateCreated) {
             Materialize.toast('You document has been created succesfully', 5000);
+            $state.go('dashboard');
           }
         });
       };
