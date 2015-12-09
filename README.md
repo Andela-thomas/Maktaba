@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/Andela-thomas/Maktaba/badges/gpa.svg)](https://codeclimate.com/github/Andela-thomas/Maktaba)
+
 # Maktaba
 [![Code Climate](https://codeclimate.com/github/Andela-thomas/Maktaba/badges/gpa.svg)](https://codeclimate.com/github/Andela-thomas/Maktaba)
 [![Issue Count](https://codeclimate.com/github/Andela-thomas/Maktaba/badges/issue_count.svg)](https://codeclimate.com/github/Andela-thomas/Maktaba)
