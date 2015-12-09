@@ -21,9 +21,12 @@ angular.module('maktaba.controllers')
       };
       // register user
       $scope.register = function() {
-        Users.save($scope.user, /* istanbul ignore next */ function(response) {
-          if (!response.errmsg) {
-            Materialize.toast('Login succesfull', 3000);
+        Users.save($scope.user, /* istanbul ignore next */ function(res) {
+          if (res.token) {
+            Auth.setToken(res.token);
+            // toast message
+            Materialize.toast('Login successful', 5000);
+            $location.path('/dashboard');
           } else {
             Materialize.toast('Invalid username or password', 3000);
           }
