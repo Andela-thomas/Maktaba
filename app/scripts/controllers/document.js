@@ -30,7 +30,6 @@ angular.module('maktaba.controllers')
       };
 
       // Delete document
-
       $scope.delete = function() {
         Documents.remove({
           id: $scope.document._id

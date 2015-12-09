@@ -7,8 +7,6 @@ angular.module('maktaba.controllers')
 
       $scope.users = Users.query();
       // load all the documents of a specified user
-
-
       $scope.getDocuments = function(id) {
         Users.getDocument(id, /* istanbul ignore next */ function(err, res) {
           $scope.documents = res;
