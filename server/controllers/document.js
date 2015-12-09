@@ -76,7 +76,7 @@ var Doc = require('../models/document'),
         }
         res.json(ok);
       });
-    },
+    }
   };
 
 module.exports = docHandler;
