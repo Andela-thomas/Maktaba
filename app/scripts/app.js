@@ -25,7 +25,7 @@
     'maktaba.directives',
     'ngRoute',
     'ui.router',
-    'ngResource',
+    'ngResource'
   ]);
 
   window.app.run(['$rootScope', '$location', 'Users',
@@ -36,11 +36,11 @@
           $('body').addClass('loaded');
         }, 200);
       });
-      $(".button-collapse").sideNav({
+      $('.button-collapse').sideNav({
         closeOnClick: true
       });
       // Get token
-      $rootScope.$on("$locationChangeStart",
+      $rootScope.$on('$locationChangeStart',
         /* istanbul ignore next */
         function() {
           //Do your things
@@ -50,54 +50,55 @@
             }
           });
         });
-
     }
   ]);
 
-  window.app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  window.app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
+    function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
-    // pass the token to the headers
-    $httpProvider.interceptors.push('Interceptor');
-    // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise('/404');
+      // pass the token to the headers
+      $httpProvider.interceptors.push('Interceptor');
+      // For any unmatched url, redirect to /state1
+      $urlRouterProvider.otherwise('/404');
 
-    // Now set up the states
-    $stateProvider
-      .state('home', {
-        url: '/',
-        controller: 'HomeCtrl',
-        templateUrl: 'views/home.html'
-      })
-      .state('dashboard', {
-        url: '/dashboard',
-        controller: 'DashboardCtrl',
-        templateUrl: 'views/dashboard.html'
-      })
-      .state('document', {
-        url: '/user/{id}/document',
-        controller: 'DocumentCtrl',
-        templateUrl: 'views/document.html'
-      })
-      .state('addDocument', {
-        url: '/document/create',
-        controller: 'DocumentCtrl',
-        templateUrl: 'views/add-document.html'
-      })
-      .state('profile', {
-        url: '/users/profile',
-        controller: 'ProfileCtrl',
-        templateUrl: 'views/profile.html'
-      })
-      .state('login', {
-        url: '/login',
-        controller: 'LoginCtrl',
-        templateUrl: 'views/login.html'
-      })
-      .state('404', {
-        url: '/404',
-        templateUrl: 'views/404.html'
-      });
+      // Now set up the states
+      $stateProvider
+        .state('home', {
+          url: '/',
+          controller: 'HomeCtrl',
+          templateUrl: 'views/home.html'
+        })
+        .state('dashboard', {
+          url: '/dashboard',
+          controller: 'DashboardCtrl',
+          templateUrl: 'views/dashboard.html'
+        })
+        .state('document', {
+          url: '/user/{id}/document',
+          controller: 'DocumentCtrl',
+          templateUrl: 'views/document.html'
+        })
+        .state('addDocument', {
+          url: '/document/create',
+          controller: 'DocumentCtrl',
+          templateUrl: 'views/add-document.html'
+        })
+        .state('profile', {
+          url: '/users/profile',
+          controller: 'ProfileCtrl',
+          templateUrl: 'views/profile.html'
+        })
+        .state('login', {
+          url: '/login',
+          controller: 'LoginCtrl',
+          templateUrl: 'views/login.html'
+        })
+        .state('404', {
+          url: '/404',
+          templateUrl: 'views/404.html'
+        });
 
-    $locationProvider.html5Mode(true);
-  }]);
+      $locationProvider.html5Mode(true);
+    }
+  ]);
 })();
