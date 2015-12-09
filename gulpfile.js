@@ -25,6 +25,21 @@ var gulp = require('gulp'),
     styles: 'app/styles/*.+(less|css)'
   };
 
+gulp.task('test:fend', function() {
+  // Be sure to return the stream
+  return gulp.src(paths.unitTests)
+    .pipe(karma({
+      configFile: __dirname + '/karma.conf.js',
+      // autoWatch: false,
+      // singleRun: true
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      // Make sure failed tests cause gulp to exit non-zero
+      throw err;
+    });
+});
+
 gulp.task('less', function() {
   gulp.src(paths.styles)
     .pipe(less({
@@ -65,6 +80,7 @@ gulp.task('browserify', function() {
     .pipe(gulp.dest('./public/js/'));
 });
 
+
 gulp.task('static-files', function() {
   return gulp.src(paths.staticFiles)
     .pipe(gulp.dest('public/'));
@@ -82,21 +98,6 @@ gulp.task('nodemon', function() {
     });
 });
 
-gulp.task('test:fend', ['browserify', 'bower'], function() {
-  // Be sure to return the stream
-  return gulp.src(paths.unitTests)
-    .pipe(karma({
-      configFile: __dirname + '/karma.conf.js',
-      //autoWatch: true,
-      // singleRun: true
-      action: 'run'
-    }))
-    .on('error', function(err) {
-      // Make sure failed tests cause gulp to exit non-zero
-      throw err;
-    });
-});
-
 gulp.task('watch', function() {
   // livereload.listen({ port: 35729 });
   gulp.watch(paths.jade, ['jade']);
@@ -105,7 +106,7 @@ gulp.task('watch', function() {
   // gulp.watch(paths.public).on('change', livereload.changed);
 });
 
-gulp.task('build', ['static-files', 'jade', 'less',
+gulp.task('build', ['jade', 'less', 'static-files',
   'images', 'browserify', 'bower'
 ]);
 gulp.task('heroku:production', ['build']);

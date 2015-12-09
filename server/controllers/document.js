@@ -54,20 +54,22 @@ var Doc = require('../models/document'),
           content: req.body.content
         }
       }, function(err) {
-        if (err)
+        if (err) {
           res.send({
             error: 'Update failed'
           });
-        else
+        } else {
           res.status(200).send({
             message: 'Update succesful'
           });
+        }
       });
     },
 
     delete: function(req, res) {
       Doc.remove({
-        _id: req.params.id
+        _id: req.params.id,
+        ownerId: req.decoded._id
       }, function(err, ok) {
         if (err) {
           res.status.send(err);
