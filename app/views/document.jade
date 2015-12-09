@@ -8,11 +8,11 @@
       p {{document.content}}
       br
       .card-action
-        span.card-title.activator.grey-text.text-darken-4
+        span.card-title.activator.grey-text.text-darken-4(ng-if="user.name.first === docUser.name.first")
           i.material-icons.right edit
         p
           a(href="")
-            | By: {{user.name.first + ' ' + user.name.last}}
+            | By: {{docUser.name.first + ' ' + docUser.name.last}}
     .card-reveal
       .form
         span.card-title.grey-text.text-darken-4

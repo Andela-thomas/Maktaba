@@ -8,7 +8,6 @@ var Doc = require('../models/document'),
         content: req.body.content
       }, function(err, doc) {
         if (err) {
-          console.log(err);
           res.send(err);
         } else if (!doc) {
           res.status(400).send({
@@ -76,7 +75,7 @@ var Doc = require('../models/document'),
         }
         res.json(ok);
       });
-    },
+    }
   };
 
 module.exports = docHandler;
