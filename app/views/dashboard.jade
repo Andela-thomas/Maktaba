@@ -3,6 +3,9 @@
     ul.collection.with-header
       li.collection-header.grey.lighten-3
         h6 Available users
+      li.collection-item(ng-if="users.length < 1")
+        div
+          | No users available
       li.collection-item(ng-click="view(user._id)" ng-repeat="user in users")
         div
           | {{ user.name.first + ' ' + user.name.last}}
