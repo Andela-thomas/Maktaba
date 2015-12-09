@@ -10,7 +10,7 @@ deployment:
   production:
     branch: master
     heroku:
-      appname: maktaba-staging
+      appname: mak-taba
   staging:
     branch: staging
     heroku:
