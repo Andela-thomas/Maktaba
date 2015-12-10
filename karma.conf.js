@@ -25,7 +25,7 @@ module.exports = function(config) {
       'public/lib/angular-resource/angular-resource.min.js',
       'public/lib/jquery/dist/jquery.min.js',
       'public/lib/Materialize/dist/js/materialize.min.js',
-      'public/js/app.js',
+      'public/js/app.min.js',
       'tests/unit/client/**/*.js'
     ],
 

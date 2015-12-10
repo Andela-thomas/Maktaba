@@ -5,8 +5,10 @@ var gulp = require('gulp'),
   gutil = require('gulp-util'),
   browserify = require('browserify'),
   path = require('path'),
+  buffer = require('vinyl-buffer'),
   source = require('vinyl-source-stream'),
   imagemin = require('gulp-imagemin'),
+  uglify = require('gulp-uglify'),
   jasmin = require('gulp-jasmine'),
   nodemon = require('gulp-nodemon'),
   karma = require('gulp-karma'),
@@ -61,8 +63,11 @@ gulp.task('browserify', function() {
     .on('error', gutil.log.bind(gutil, 'Browserify ' +
       'Error: in browserify gulp task'))
     // vinyl-source-stream makes the bundle compatible with gulp
-    .pipe(source('app.js')) // Desired filename
+
+  .pipe(source('app.min.js')) // Desired filename
     // Output the file
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('./public/js/'));
 });
 

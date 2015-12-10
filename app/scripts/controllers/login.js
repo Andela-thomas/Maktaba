@@ -12,6 +12,7 @@ angular.module('maktaba.controllers')
             if (res.token) {
               Auth.setToken(res.token);
               // toast message
+              $rootScope.user = res.user;
               Materialize.toast(res.message, 5000);
               $location.path('/dashboard');
             } else {
@@ -25,6 +26,7 @@ angular.module('maktaba.controllers')
           if (res.token) {
             Auth.setToken(res.token);
             // toast message
+            $rootScope.user = res.user;
             Materialize.toast('Login successful', 5000);
             $location.path('/dashboard');
           } else {
