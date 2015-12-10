@@ -86,7 +86,7 @@ app.use(function(err, req, res, next) {
 
 var server = app.listen(process.env.PORT || 3000, function() {
   console.log('Express server listening on %d, in %s' +
-    'mode', server.address().port, app.get('env'));
+    ' mode', server.address().port, app.get('env'));
 });
 
 module.exports = app;

@@ -16,7 +16,7 @@
               i.material-icons.prefix select_all
               label Browser Select
               select.browser-default.select(ng-model="document.access" )
-                option( value='', disabled='', selected='') Choose your option
+                option( value='' disabled='' selected='') Choose your option
                 option( value='private') Private
                 option(value='public') Public
 
@@ -25,6 +25,6 @@
               textarea#textarea1.materialize-textarea(ng-model="document.content" rows="5")
               label(for='textarea1') Document Body
           div
-            button.btn.waves-effect.waves-light.teal.darken-1(type="submit", name="action")
+            button.btn.waves-effect.waves-light.teal.darken-1(type="submit" name="action")
               | Submit
               i.material-icons.right send
