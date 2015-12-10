@@ -4,8 +4,13 @@ dependencies:
  post:
   - npm install module-deps
   - npm install gulp -g
-test:
-  override:
+
+machine:
+  environment:
+    NODE_ENV: test
+    CIRCLE_ENV: test
+    DATABASE_URL : mongodb://superadmin:admin@ds045714.mongolab.com:45714/manager
+    EXPRESS_SESSION_KEY: MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgEbVzfPnZPxfAyxqE
 deployment:
   production:
     branch: master
@@ -15,4 +20,3 @@ deployment:
     branch: staging
     heroku:
       appname: maktaba-staging
-

@@ -1,5 +1,5 @@
-describe("Service Unit Tests", function() {
-  var httpProvider, Auth, Token, token, Interceptor, $httpBackend;
+describe('Interceptor tests', function() {
+  var httpProvider, Auth, Token, token, Interceptor;
   beforeEach(function() {
     module('maktaba', function($httpProvider) {
       //save our interceptor

@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   path = require('path'),
   source = require('vinyl-source-stream'),
   imagemin = require('gulp-imagemin'),
+  jasmin = require('gulp-jasmine'),
   nodemon = require('gulp-nodemon'),
   karma = require('gulp-karma'),
   paths = {
@@ -97,6 +98,12 @@ gulp.task('test:fend', ['browserify', 'bower'], function() {
     });
 });
 
+gulp.task('test:bend', function() {
+  return gulp.src(paths.serverTests)
+    // gulp-jasmine works on filepaths so you can't have any plugins before it
+    .pipe(jasmin());
+});
+
 gulp.task('watch', function() {
   // livereload.listen({ port: 35729 });
   gulp.watch(paths.jade, ['jade']);
@@ -111,5 +118,5 @@ gulp.task('build', ['static-files', 'jade', 'less',
 gulp.task('heroku:production', ['build']);
 gulp.task('heroku:staging', ['build']);
 gulp.task('production', ['nodemon', 'build']);
-gulp.task('test', ['test:fend']);
+gulp.task('test', ['test:bend', 'test:fend']);
 gulp.task('default', ['nodemon', 'watch', 'build']);

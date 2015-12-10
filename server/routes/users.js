@@ -16,16 +16,16 @@ module.exports = function(app, express) {
   router.use(User.verifyUser);
 
   router.route('/users')
-    .get(User.getAllUsers);
+    .get(User.all);
 
   router.route('/users/:id')
-    .get(User.getUser)
-    .put(User.updateUser)
-    .delete(User.deleteUser);
+    .get(User.find)
+    .put(User.update)
+    .delete(User.delete);
 
   router.route('/users/:id/documents')
-    .get(User.getDocumentByUserId);
-  router.route('/me')
+    .get(User.findById);
+  router.route('/session')
     .get(function(req, res) {
       res.send(req.decoded);
     });
