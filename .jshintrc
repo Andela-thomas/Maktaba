@@ -5,7 +5,6 @@
   "camelcase": false,
   "curly": true,
   "forin": false,
-  "jasmine": false,
   "immed": true,
   "latedef": "nofunc",
   "maxlen": 120,

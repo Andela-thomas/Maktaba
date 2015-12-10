@@ -12,7 +12,7 @@
     ```
       $ git clone <project url>
     ```
-  2. install the project dependecies
+  2.  cd to Maktaba folder and install the project dependecies
    ```
     $ npm install
   ```
@@ -21,3 +21,9 @@
       `DATABASE_URL` This the url to you mongodb database
 
       `EXPRESS_SESSION_KEY` This is the encrypton key that will be used to create session and token
+
+# Running tests
+  To run you tests, run `npm test` you terminal
+  ```
+    $ npm test
+  ```

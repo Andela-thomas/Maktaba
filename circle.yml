@@ -4,10 +4,7 @@ dependencies:
  post:
   - npm install module-deps
   - npm install gulp -g
-test:
-  override:
-    - gulp build
-    - npm test
+
 machine:
   environment:
     NODE_ENV: test
@@ -22,4 +19,3 @@ deployment:
     branch: staging
     heroku:
       appname: maktaba-staging
-
