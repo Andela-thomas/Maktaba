@@ -2,6 +2,8 @@
 [![Code Climate](https://codeclimate.com/github/Andela-thomas/Maktaba/badges/gpa.svg)](https://codeclimate.com/github/Andela-thomas/Maktaba)
 [![Test Coverage](https://codeclimate.com/github/Andela-thomas/Maktaba/badges/coverage.svg)](https://codeclimate.com/github/Andela-thomas/Maktaba/coverage)
 
+## circleCI
+   https://circleci.com/gh/Andela-thomas/Maktaba
 # What you need
   1. Nodejs https://nodejs.org
   2. mongodb https://www.mongodb.org
