@@ -107,6 +107,16 @@ describe('Document manager API testing', function() {
     });
 
     it('should update user', function(done) {
+      user = {
+        username: faker.internet.userName(),
+        name: {
+          first: faker.name.firstName(),
+          lastn: faker.name.lastName(),
+        },
+        role: 'admin',
+        email: faker.internet.email(),
+        password: faker.name.findName()
+      };
       request
         .put(Url + 'api/users/' + userId)
         .set('x-access-token', token)

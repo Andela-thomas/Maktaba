@@ -34,6 +34,12 @@ angular.module('maktaba.controllers')
           } else {
             Materialize.toast(res.error, 5000);
           }
+        },
+        /* istanbul ignore next */
+        function(err) {
+          if (err) {
+            Materialize.toast('Update, failed');
+          }
         });
     };
   }]);

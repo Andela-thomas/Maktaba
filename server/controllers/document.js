@@ -8,9 +8,9 @@ var Doc = require('../models/document'),
         content: req.body.content
       }, function(err, doc) {
         if (err) {
-          res.send(err);
+          res.status(500).send(err);
         } else if (!doc) {
-          res.status(400).send({
+          res.status(400).json({
             error: 'Document not created'
           });
         } else {
@@ -22,7 +22,7 @@ var Doc = require('../models/document'),
     all: function(req, res) {
       Doc.find({}, function(err, docs) {
         if (err) {
-          res.status(404).send({
+          res.status(404).json({
             error: 'Documents not found'
           });
         }
@@ -35,7 +35,7 @@ var Doc = require('../models/document'),
         _id: req.params.id
       }, function(err, docs) {
         if (err) {
-          res.status(404).send({
+          res.status(404).json({
             error: 'Document Not found'
           });
         }
@@ -54,11 +54,11 @@ var Doc = require('../models/document'),
         }
       }, function(err) {
         if (err) {
-          res.send({
+          res.status(500).json({
             error: 'Update failed'
           });
         } else {
-          res.status(200).send({
+          res.status(200).json({
             message: 'Update succesful'
           });
         }

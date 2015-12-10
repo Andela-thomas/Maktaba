@@ -20,13 +20,12 @@ angular.module('maktaba.services')
     };
 
     obj.session = function(cb) {
-      $http.get('/api/me')
-
-      .success( /* istanbul ignore next */ function(res) {
-        cb(null, res);
-      }).error( /* istanbul ignore next */ function(err) {
-        cb(err);
-      });
+      $http.get('/api/session')
+        .success( /* istanbul ignore next */ function(res) {
+          cb(null, res);
+        }).error( /* istanbul ignore next */ function(err) {
+          cb(err);
+        });
     };
 
     obj.getDocument = function(id, cb) {
