@@ -31,7 +31,9 @@
     "browser",
     "element",
     "by",
-    "exports"
+    "exports",
+    "spyOn",
+    "beforeAll"
   ],
   "quotmark": true,
   "trailing": true,
