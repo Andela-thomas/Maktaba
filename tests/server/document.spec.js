@@ -32,7 +32,7 @@ describe('Document resource APi testing', function() {
       });
   });
   // create user to get the userId
-  beforeEach(function(done) {
+  beforeAll(function(done) {
     request
       .post(Url + '/api/users/login')
       .send(credentials)
