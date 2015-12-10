@@ -21,7 +21,7 @@ angular.module('maktaba.controllers')
       };
       // register user
       $scope.register = function() {
-        Users.save($scope.user, /* istanbul ignore next */ function(err, res) {
+        Users.save($scope.user, /* istanbul ignore next */ function(res) {
           if (res.token) {
             Auth.setToken(res.token);
             // toast message
