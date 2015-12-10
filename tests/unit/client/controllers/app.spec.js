@@ -8,15 +8,15 @@ describe('app.run test tests', function() {
     scope = $injector.get('$rootScope');
     Users = $injector.get('Users');
     Auth = $injector.get('Auth');
-    spyOn(Users, 'user').and.callThrough();
+    spyOn(Users, 'session').and.callThrough();
     spyOn(Auth, 'isLoggedIn').and.callThrough();
-    Users.user();
+    Users.session();
     Auth.isLoggedIn();
   }));
 
   it('should define and call Users.logout', function() {
-    expect(Users.user).toBeDefined();
-    expect(Users.user).toHaveBeenCalled();
+    expect(Users.session).toBeDefined();
+    expect(Users.session).toHaveBeenCalled();
   });
 
   it('should define and call Auth.isLoggedIn', function() {

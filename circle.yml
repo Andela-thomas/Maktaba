@@ -6,6 +6,13 @@ dependencies:
   - npm install gulp -g
 test:
   override:
+    - gulp build
+    - npm test
+machine:
+  environment:
+    NODE_ENV: test
+    CIRCLE_ENV: test
+    DATABASE_URL: mongodb://superadmin:admin@ds045714.mongolab.com:45714/manager
 deployment:
   production:
     branch: master

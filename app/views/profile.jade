@@ -71,8 +71,7 @@ section#content
             li.collection-item.avatar(ng-repeat="document in documents | limitTo: 4")
               img.circle(src='http://lorempixel.com/50/50/people', alt='')
               span.title {{document.title}}
-              p
-                 {{document.content | limitTo: 50}}
+              p {{document.content | limitTo: 50}}
               a.secondary-content(href='#!')
                 i.mdi-action-grade
 

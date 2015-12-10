@@ -9,12 +9,12 @@ describe('Users Service Test', function() {
     Users = $injector.get('Users');
     $http = $injector.get('$http');
     spyOn(Users, 'login').and.callThrough();
-    spyOn(Users, 'user').and.callThrough();
+    spyOn(Users, 'session').and.callThrough();
     spyOn(Users, 'getDocument').and.callThrough();
     spyOn(Users, 'logout').and.callThrough();
 
     Users.login();
-    Users.user();
+    Users.session();
     Users.getDocument();
     Users.logout();
   }));
@@ -26,8 +26,8 @@ describe('Users Service Test', function() {
     });
 
     it('user function should be defined and called', function() {
-      expect(Users.user).toBeDefined();
-      expect(Users.user).toHaveBeenCalled();
+      expect(Users.session).toBeDefined();
+      expect(Users.session).toHaveBeenCalled();
     });
 
     it('get Document  function should be defined and called', function() {

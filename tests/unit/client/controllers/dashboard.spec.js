@@ -21,9 +21,7 @@ describe('Dashboard controller  tests', function() {
     spyOn(Users, 'getDocument').and.callThrough();
     Users.query();
     scope.readMore();
-    scope.getDocuments();
     scope.view();
-    Users.getDocument();
   }));
 
 
