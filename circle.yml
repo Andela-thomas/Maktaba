@@ -14,7 +14,7 @@ machine:
     DATABASE_URL: localhost
     DATABASE_NAME: circle_test
     DATABASE_DIALECT: mongodb
-    DATABASE_URL: mongodb://ubuntu:@127.0.0.1:5432/circle_test
+    DATABASE_URL: mongodb://localhost/circle_test
 deployment:
   production:
     branch: master
