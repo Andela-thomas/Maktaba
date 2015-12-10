@@ -8,20 +8,20 @@
         i.mdi-navigation-menu
       ul.right.hide-on-med-and-down(ng-if="!user")
         li
-          a(ui-sref="login").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Login")
+          a.tooltipped(ui-sref="login" data-position="bottom" data-delay="50" data-tooltip="Login")
             i.material-icons.md-18 lock
       ul.right.hide-on-med-and-down(ng-if="user")
         li
-          a(ui-sref="dashboard").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Home")
+          a.tooltipped(ui-sref="dashboard" data-position="bottom" data-delay="50" data-tooltip="Home")
             i.material-icons.md-18 home
         li
-          a(ui-sref="profile").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Profile")
+          a.tooltipped(ui-sref="profile" data-position="bottom" data-delay="50" data-tooltip="Profile")
             i.material-icons.md-18 supervisor_account
         li
-          a(ui-sref="addDocument").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Add Document")
+          a.tooltipped(ui-sref="addDocument" data-position="bottom" data-delay="50" data-tooltip="Add Document")
             i.material-icons.md-18 note_add
         li
-          a(ng-click="logout()").tooltipped(data-position="bottom" data-delay="50" data-tooltip="Logout")
+          a.tooltipped(ng-click="logout()" data-position="bottom" data-delay="50" data-tooltip="Logout")
             i.material-icons.md-18 lock_open
       ul#mobile-demo.right.side-nav
         li

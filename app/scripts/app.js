@@ -31,25 +31,15 @@
   window.app.run(['$rootScope', '$location', 'Users',
     function($rootScope, $location, Users) {
       /*Preloader*/
-      $(window).load(function() {
-        setTimeout( /* istanbul ignore next */ function() {
-          $('body').addClass('loaded');
-        }, 200);
-      });
+      $('body').addClass('loaded');
       $('.button-collapse').sideNav({
         closeOnClick: true
       });
-      // Get token
-      $rootScope.$on('$locationChangeStart',
-        /* istanbul ignore next */
-        function() {
-          //Do your things
-          Users.user(function(err, res) {
-            if (res) {
-              $rootScope.user = res;
-            }
-          });
-        });
+      Users.session(function(err, res) {
+        if (res) {
+          $rootScope.user = res;
+        }
+      });
     }
   ]);
 

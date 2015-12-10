@@ -8,7 +8,6 @@ var config = require('./server/config')[env],
   express = require('express'),
   mongoose = require('mongoose'),
   path = require('path'),
-  favicon = require('serve-favicon'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
@@ -30,8 +29,6 @@ mongoose.connect(config.db, function(err) {
 app.set('views', path.join(__dirname, 'server/views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.static(path.join(__dirname, './public')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -87,9 +84,9 @@ app.use(function(err, req, res, next) {
   next();
 });
 
-var server = app.listen(process.env.PORT || 3001, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
   console.log('Express server listening on %d, in %s' +
-    'mode', server.address().port, app.get('env'));
+    ' mode', server.address().port, app.get('env'));
 });
 
 module.exports = app;

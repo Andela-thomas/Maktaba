@@ -28,7 +28,11 @@ angular.module('maktaba.controllers')
             Materialize.toast('Login successful', 5000);
             $location.path('/dashboard');
           } else {
-            Materialize.toast('Invalid username or password', 3000);
+            Materialize.toast('Username or password already exist', 3000);
+          }
+        }, /* istanbul ignore next */ function(err) {
+          if (err) {
+            Materialize.toast('Signup failed, check your details and try again', 3000);
           }
         });
       };

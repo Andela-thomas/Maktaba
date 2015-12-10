@@ -26,6 +26,10 @@ angular.module('maktaba.controllers')
           } else {
             Materialize.toast(res.error, 5000);
           }
+        }, /* istanbul ignore next */ function(err) {
+          if (err) {
+            Materialize.toast('Update failed', 5000);
+          }
         });
       };
 
@@ -40,6 +44,10 @@ angular.module('maktaba.controllers')
           } else {
             Materialize.toast('Delete failed', 5000);
           }
+        }, /* istanbul ignore next */ function(err) {
+          if (err) {
+            Materialize.toast('Delete failed', 5000);
+          }
         });
       };
 
@@ -49,6 +57,8 @@ angular.module('maktaba.controllers')
             Materialize.toast('You document has been created succesfully', 5000);
             $state.go('dashboard');
           }
+        }, /* istanbul ignore next */ function() {
+          Materialize.toast('Failed to add document', 3000);
         });
       };
     }
