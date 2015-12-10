@@ -19,7 +19,7 @@ angular.module('maktaba.services')
       });
     };
 
-    obj.user = function(cb) {
+    obj.session = function(cb) {
       $http.get('/api/me')
 
       .success( /* istanbul ignore next */ function(res) {

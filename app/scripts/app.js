@@ -44,7 +44,7 @@
         /* istanbul ignore next */
         function() {
           //Do your things
-          Users.user(function(err, res) {
+          Users.session(function(err, res) {
             if (res) {
               $rootScope.user = res;
             }
