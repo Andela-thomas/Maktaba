@@ -9,12 +9,8 @@ machine:
   environment:
     NODE_ENV: test
     CIRCLE_ENV: test
-    DATABASE_USERNAME: ubuntu
-    DATABASE_PASSWORD:
-    DATABASE_URL: localhost
-    DATABASE_NAME: circle_test
-    DATABASE_DIALECT: mongodb
-    DATABASE_URL: mongodb://localhost/circle_test
+    DATABASE_URL : mongodb://superadmin:admin@ds045714.mongolab.com:45714/manager
+    EXPRESS_SESSION_KEY: MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgEbVzfPnZPxfAyxqE
 deployment:
   production:
     branch: master
