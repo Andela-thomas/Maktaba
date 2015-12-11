@@ -5,6 +5,7 @@ var gulp = require('gulp'),
   gutil = require('gulp-util'),
   browserify = require('browserify'),
   path = require('path'),
+  minifycss = require('gulp-minify-css'),
   buffer = require('vinyl-buffer'),
   source = require('vinyl-source-stream'),
   imagemin = require('gulp-imagemin'),
@@ -33,6 +34,7 @@ gulp.task('less', function() {
     .pipe(less({
       paths: [path.join(__dirname, './app/styles')]
     }))
+    .pipe(minifycss())
     .pipe(gulp.dest('./public/css'));
 });
 

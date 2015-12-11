@@ -4,16 +4,18 @@ angular.module('maktaba.controllers')
       var id = $stateParams.id;
       $('select').material_select();
       // load the document
-      Documents.get({
-        id: id
-      }, /* istanbul ignore next */ function(data) {
-        $scope.document = data;
-        Users.get({
-          id: $scope.document.ownerId
-        }, /* istanbul ignore function */ function(user) {
-          $scope.docUser = user;
+      if (id) {
+        Documents.get({
+          id: id
+        }, /* istanbul ignore next */ function(data) {
+          $scope.document = data;
+          Users.get({
+            id: $scope.document.ownerId
+          }, /* istanbul ignore function */ function(user) {
+            $scope.docUser = user;
+          });
         });
-      });
+      }
 
       //  Update document
       $scope.update = function() {
